@@ -118,18 +118,16 @@
 		
 		public function checkKeypresses():void
 		{
-			// I used http://www.dakmm.com/?p=272 as a reference to get the keyCode numbers for each key
-			if(key.isDown(KeyCodes.LeftArrow) || key.isDown(KeyCodes.A)){ // if left arrow or A is pressed
+			if(key.isDown(KeyCodes.LeftArrow) || key.isDown(KeyCodes.a)){ // if left arrow or A is pressed
 				_leftPressed = true;
 			} else {
 				_leftPressed = false;
 			}
-			
 			if(key.isDown(KeyCodes.UpArrow) || key.isDown(KeyCodes.w)){ // if up arrow or W is pressed
 				_upPressed = true;
 			} else {
 				_upPressed = false;
-			}
+			}                   
 			
 			if(key.isDown(KeyCodes.RightArrow) || key.isDown(KeyCodes.d)){ //if right arrow or D is pressed
 				_rightPressed = true;
