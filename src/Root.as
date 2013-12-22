@@ -4,6 +4,8 @@
 	import basics.hitboxes.InteractionBox;
 	import enemies.Baby;
 	import environment.nature.Tree;
+	import environment.wall.segments.BaseSegment;
+	import environment.wall.segments.HorizontalDoor;
 	import environment.wall.Wall;
 	import flash.display.MovieClip;
 	import flash.events.Event;
@@ -46,7 +48,7 @@
 			timesToSort--;
 			for (var i = 0; i < this.numChildren; i++) {
 				var childClip:MovieClip = getChildAt(i) as MovieClip;
-				if (childClip is Tree || childClip is Wall) { //TODO: Loop through all?
+				if (childClip is Tree || childClip is BaseSegment) { //TODO: Loop through all?
 					for (var j = 0; j < this.numChildren; j++) {
 						var childClip2:MovieClip = getChildAt(j) as MovieClip;
 						if (childClip2 is Tree || childClip2 is Wall) { //TODO: Loop through all?
@@ -117,11 +119,11 @@
 					if (shouldSwapWithPlayer(childClip, 0)) {
 						setChildIndex(childClip, getChildIndex(player))
 					}
-				} else if (childClip is Wall) {
-					var wall:Wall = childClip as Wall;
+				} else if (childClip is BaseSegment) {
+					var wall:BaseSegment = childClip as BaseSegment;
 					var offsetDoor:Number = 35;
 					var offsetElse:Number = 10;
-					if (wall.isDoor && wall.doorOpen) {
+					if (wall.isDoor && (wall as HorizontalDoor).isDoorOpen) {
 						if (Math.abs(this.player.x - wall.x) < 25) {
 							if (shouldSwapWithPlayer(wall, offsetDoor)) {
 								//swapChildren(wall, player);
@@ -193,21 +195,15 @@
 					if (tree.hitbox.hitTestPoint(x_next, y_next, false)) {
 						return true;
 					}
-				} else if (childClip is Wall) {
+				} else if (childClip is BaseSegment) {
 					
-					var wall:Wall = childClip as Wall;
-					if (wall.isDoor) {
-						if (wall.door == null) {
-							continue;
-						}
-						for each (var hitbox:InteractionBox in wall.door.getHitboxes()) {
+					var wall:BaseSegment = childClip as BaseSegment;
+					
+					for each (var hitbox:InteractionBox in wall.Hitboxes) {
 							if (hitbox.hitTestPoint(x_next, y_next, false)) {
 								return true;
 							}
 						}
-					} else if (wall.hitbox.hitTestPoint(x_next, y_next, false)) {
-						return true;
-					}
 				}
 			}
 			return false;

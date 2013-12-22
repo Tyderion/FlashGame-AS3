@@ -13,7 +13,7 @@ package environment.wall.segments
 		public var hitbox1:InteractionBox;
 		
 		
-		public function getHitboxes():Array { 
+		public function get Hitboxes():Array { 
 			if (hitbox1 == null) return new Array();
 			else return new Array(hitbox1);
 		}
@@ -21,6 +21,10 @@ package environment.wall.segments
 		public function BaseSegment() 
 		{
 			super();
+		}
+		
+		public function get isDoor():Boolean {
+			return this is HorizontalDoor;
 		}
 		
 	}
