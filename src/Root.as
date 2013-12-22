@@ -11,11 +11,10 @@
 	import flash.events.Event;
 	import flash.geom.Rectangle;
 	import interfaces.HealthBar;
-	
 	import utilities.*;
-	
 	import vendor.KeyObject;
 	
+	[SWF(width="600", height="400")] // Override document window size
 	public dynamic class Root extends MovieClip {
 		
 		var healthbar:HealthBar;
@@ -28,15 +27,18 @@
 		private var _downPressed:Boolean = false; //...down key pressed
 		private var _attackPressed:Boolean = false; //...down key pressed
 		
+		public var scrollRectWidth:Number = 600;
+		public var scrollRectHeight:Number = 400;
+	
 		public var player:Player;
 		
 		
 		private var timesToSort:Number = 3;
 		
 		public function Root() {
-			// constructor code
 			
-			this.scrollRect = new Rectangle(0,0,600,400);
+			
+			this.scrollRect = new Rectangle(this.player.x -scrollRectWidth/2 ,this.player.y - scrollRectHeight/2,600,400);
 			healthbar = new HealthBar(100, 100, 0.5, 0.5);
 			stage.addChild(healthbar);
 			keyPresses = new KeyObject(this.stage);
