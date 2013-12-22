@@ -45,7 +45,6 @@
 		}
 		
 		
-		
 		public function loop(e:Event):void {
 			if (Wait > 0) {
 				Wait--;

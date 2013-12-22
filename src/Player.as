@@ -27,7 +27,6 @@
 			
 			if (this.rootRef.upPressed) {
 				_direction =  Directions.UP;
-				
 			}
 			if (this.rootRef.downPressed) {
 				_direction =  Directions.DOWN;
@@ -54,7 +53,6 @@
 
 		
 		public function loop(e:Event):void {
-			
 			//this.parent.setChildIndex(this, this.y as int);
 			var xchange = 0;
 			var ychange = 0;

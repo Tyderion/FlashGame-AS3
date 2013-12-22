@@ -1,4 +1,5 @@
 package environment.nature {
+	import basics.hitboxes.InteractionBox;
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	
@@ -6,8 +7,9 @@ package environment.nature {
 	 * ...
 	 * @author Gabriel
 	 */
-	public class Tree extends MovieClip {
+	public dynamic class Tree extends MovieClip {
 		
+		public var hitbox:InteractionBox;
 		public function Tree() {
 			super();
 			this.gotoAndPlay(1);
