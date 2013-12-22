@@ -2,21 +2,29 @@
 	
 	import flash.display.MovieClip;
 	import flash.events.Event;
+	import utilities.Random;
 	
 	
-	public class BloodSplatter extends MovieClip {
-		
+	public dynamic class BloodSplatter extends MovieClip {
 		
 		public function BloodSplatter() {
-			// constructor code
-			
+			setup();
 			addEventListener(Event.ENTER_FRAME, loop, false, 0, true);
+		}
+		
+		
+		private function setup():void {
+			this.scaleX = Random.random(4) - 2;
+			this.scaleY = Random.random(2);
+			this.gotoAndPlay(1);
 		}
 		
 				
 		public function loop(e:Event):void {
 			if (this.currentFrame == this.totalFrames) {
-				this.gotoAndPlay(3);
+				removeEventListener(Event.ENTER_FRAME, loop, false);
+				parent.removeChild(this);
+				this.stop();
 			}
 		}
 	}

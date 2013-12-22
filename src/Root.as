@@ -1,5 +1,6 @@
 ﻿package  {
 	
+	import basics.BloodSplatter;
 	import basics.hitboxes.InteractionBox;
 	import environment.wall.Wall;
 	import flash.display.MovieClip;
@@ -74,6 +75,8 @@
 		}
 
 		public function loop(e:Event):void {
+			
+			this.bloodSplat(Random.random(this.width), Random.random(this.height));
 			this.checkKeypresses();
 			if (wait <= 0) {
 				
@@ -147,6 +150,13 @@
 			} else {
 				_attackPressed = false;
 			}
+		}
+		
+		public function bloodSplat(x:Number, y:Number) {
+			var blood:BloodSplatter = new BloodSplatter();
+			blood.x = x;
+			blood.y = y;
+			stage.addChild(blood);
 		}
 
 		
