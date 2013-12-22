@@ -2,9 +2,10 @@
 	
 	import flash.display.MovieClip;
 	import flash.events.Event;
+	import utilities.*;
 	
 	
-	public class Player extends MovieClip {
+	public dynamic class Player extends MovieClip {
 		
 		private var speed:Number = 5;
 		private var rootRef:Root;

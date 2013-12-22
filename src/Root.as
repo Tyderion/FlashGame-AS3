@@ -1,14 +1,18 @@
 ﻿package  {
 	
+	import environment.wall.Wall;
 	import flash.display.MovieClip;
 	import flash.events.Event;
+	import interfaces.HealthBar;
+	
+	import utilities.*;
 	
 	import vendor.KeyObject;
 	
 	
-	public class Root extends MovieClip {
+	public dynamic class Root extends MovieClip {
 		
-		var healthbar:HealthBar =  new HealthBar(100, 100, 0.5, 0.5) ;
+		var healthbar:HealthBar;
 		private var _walls:Array = new Array();
 		
 		private var key:KeyObject;
@@ -24,7 +28,6 @@
 			// constructor code
 			healthbar = new HealthBar(100, 100, 0.5, 0.5);	
 			stage.addChild(healthbar);
-			
 			key = new KeyObject(this.stage);
 			addEventListener(Event.ENTER_FRAME, loop, false, 0, true);
 						
