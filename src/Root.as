@@ -2,6 +2,7 @@
 	
 	import basics.BloodSplatter;
 	import basics.hitboxes.InteractionBox;
+	import enemies.Baby;
 	import environment.nature.Tree;
 	import environment.wall.Wall;
 	import flash.display.MovieClip;
@@ -33,28 +34,28 @@
 			keyPresses = new KeyObject(this.stage);
 			addEventListener(Event.ENTER_FRAME, loop, false, 0, true);
 			
-			for (var a = 0; a < 5; a++) {
-				if (a == 2) continue;
-				trace(a);
-			};
+			addEventListener(Event.ENTER_FRAME, sort, false, 0, true);
 			
-			
+		}
+		
+		
+		function sort(e:Event) {
 			/* Swap Sort xD TODO */
 			for (var i = 0; i < this.numChildren; i++) {
 				var childClip:MovieClip = getChildAt(i) as MovieClip;
-				if (childClip is Tree || childClip is Wall) {
+				if (childClip is Tree || childClip is Wall) { //TODO: Loop through all?
 					for (var j = 0; j < this.numChildren; j++) {
 						var childClip2:MovieClip = getChildAt(j) as MovieClip;
-						if (childClip2 is Tree || childClip2 is Wall) {
 							if (childClip == childClip2) continue;
 							if ( childClip.y < childClip2.y && getChildIndex(childClip) > getChildIndex(childClip2)
 							 ||  childClip.y > childClip2.y && getChildIndex(childClip) < getChildIndex(childClip2) ) {
-								 swapChildren(childClip, childClip2);
+								 setChildIndex(childClip,getChildIndex(childClip2) )
 							 }
-						}
 					}
 				}
 			}
+			
+			removeEventListener(Event.ENTER_FRAME, sort, false);
 		}
 		
 		var wait = 10;
@@ -107,9 +108,9 @@
 			
 			for (var i = 0; i < this.numChildren; i++) {
 				var childClip:MovieClip = getChildAt(i) as MovieClip;
-				if (childClip is Tree) {
+				if (childClip is Tree || childClip is Baby) {
 					if (shouldSwapWithPlayer(childClip, 0)) {
-							swapChildren(childClip, player);
+						setChildIndex(childClip, getChildIndex(player))
 						}
 				} else if (childClip is Wall) {
 					var wall:Wall = childClip as Wall;
@@ -118,15 +119,19 @@
 					if (wall.isDoor && wall.doorOpen) {
 						if (Math.abs(this.player.x - wall.x) < 25) {
 							if (shouldSwapWithPlayer(wall, offsetDoor)) {
-								swapChildren(wall, player);
+								//swapChildren(wall, player);
+								setChildIndex(wall, getChildIndex(player))
 							}
 						} else {
 							if (shouldSwapWithPlayer(wall, offsetElse)) {
-								swapChildren(wall, player);
+								//swapChildren(wall, player);
+								setChildIndex(wall, getChildIndex(player))
 							}
 						}
 					} else if (shouldSwapWithPlayer(wall, offsetElse)) {
-						swapChildren(wall, player);
+						
+						setChildIndex(wall, getChildIndex(player))
+						//swapChildren(wall, player);
 					}
 				}
 			}
