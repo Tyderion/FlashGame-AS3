@@ -27,6 +27,9 @@
 		
 		public var player:Player;
 		
+		
+		private var timesToSort:Number = 3;
+		
 		public function Root() {
 			// constructor code
 			healthbar = new HealthBar(100, 100, 0.5, 0.5);
@@ -35,27 +38,29 @@
 			addEventListener(Event.ENTER_FRAME, loop, false, 0, true);
 			
 			addEventListener(Event.ENTER_FRAME, sort, false, 0, true);
-			
-		}
 		
+		}
 		
 		function sort(e:Event) {
 			/* Swap Sort xD TODO */
+			timesToSort--;
 			for (var i = 0; i < this.numChildren; i++) {
 				var childClip:MovieClip = getChildAt(i) as MovieClip;
 				if (childClip is Tree || childClip is Wall) { //TODO: Loop through all?
 					for (var j = 0; j < this.numChildren; j++) {
 						var childClip2:MovieClip = getChildAt(j) as MovieClip;
-							if (childClip == childClip2) continue;
-							if ( childClip.y < childClip2.y && getChildIndex(childClip) > getChildIndex(childClip2)
-							 ||  childClip.y > childClip2.y && getChildIndex(childClip) < getChildIndex(childClip2) ) {
-								 setChildIndex(childClip,getChildIndex(childClip2) )
-							 }
+						if (childClip2 is Tree || childClip2 is Wall) { //TODO: Loop through all?
+							if (childClip == childClip2)
+								continue;
+							if (childClip.y < childClip2.y && getChildIndex(childClip) > getChildIndex(childClip2) 
+							 || childClip.y > childClip2.y && getChildIndex(childClip) < getChildIndex(childClip2)) {
+								setChildIndex(childClip, getChildIndex(childClip2))
+							}
+						}
 					}
 				}
 			}
-			
-			removeEventListener(Event.ENTER_FRAME, sort, false);
+			if (timesToSort == 0) 			removeEventListener(Event.ENTER_FRAME, sort, false);
 		}
 		
 		var wait = 10;
@@ -111,7 +116,7 @@
 				if (childClip is Tree || childClip is Baby) {
 					if (shouldSwapWithPlayer(childClip, 0)) {
 						setChildIndex(childClip, getChildIndex(player))
-						}
+					}
 				} else if (childClip is Wall) {
 					var wall:Wall = childClip as Wall;
 					var offsetDoor:Number = 35;
@@ -131,7 +136,7 @@
 					} else if (shouldSwapWithPlayer(wall, offsetElse)) {
 						
 						setChildIndex(wall, getChildIndex(player))
-						//swapChildren(wall, player);
+							//swapChildren(wall, player);
 					}
 				}
 			}
@@ -139,8 +144,7 @@
 		}
 		
 		private function shouldSwapWithPlayer(wall:MovieClip, offset:Number):Boolean {
-			return (this.player.y - offset) < wall.y && getChildIndex(this.player) > getChildIndex(wall) 
-				|| (this.player.y - offset) > wall.y && getChildIndex(this.player) < getChildIndex(wall)
+			return (this.player.y - offset) < wall.y && getChildIndex(this.player) > getChildIndex(wall) || (this.player.y - offset) > wall.y && getChildIndex(this.player) < getChildIndex(wall)
 		}
 		
 		public function checkKeypresses():void {
@@ -193,17 +197,17 @@
 					
 					var wall:Wall = childClip as Wall;
 					if (wall.isDoor) {
-					if (wall.door == null) {
-						continue;
-					}
-					for each (var hitbox:InteractionBox in wall.door.getHitboxes()) {
-						if (hitbox.hitTestPoint(x_next, y_next, false)) {
-							return true;
+						if (wall.door == null) {
+							continue;
 						}
+						for each (var hitbox:InteractionBox in wall.door.getHitboxes()) {
+							if (hitbox.hitTestPoint(x_next, y_next, false)) {
+								return true;
+							}
+						}
+					} else if (wall.hitbox.hitTestPoint(x_next, y_next, false)) {
+						return true;
 					}
-				} else if (wall.hitbox.hitTestPoint(x_next, y_next, false)) {
-					return true;
-				}
 				}
 			}
 			return false;
