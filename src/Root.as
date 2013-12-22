@@ -204,7 +204,7 @@
 					
 					var wall:BaseSegment = childClip as BaseSegment;
 					
-					for each (var hitbox:InteractionBox in wall.Hitboxes) {
+					for each (var hitbox:CollisionBox in wall.Hitboxes) {
 							if (hitbox.hitTestPoint(x_next, y_next, false)) {
 								return true;
 							}
