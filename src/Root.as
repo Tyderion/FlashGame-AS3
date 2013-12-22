@@ -76,7 +76,7 @@
 
 		public function loop(e:Event):void {
 			
-			this.bloodSplat(Random.random(this.width), Random.random(this.height));
+			//this.bloodSplat(Random.random(this.width), Random.random(this.height));
 			this.checkKeypresses();
 			if (wait <= 0) {
 				
