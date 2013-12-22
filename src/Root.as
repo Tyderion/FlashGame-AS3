@@ -9,6 +9,7 @@
 	import environment.wall.Wall;
 	import flash.display.MovieClip;
 	import flash.events.Event;
+	import flash.geom.Rectangle;
 	import interfaces.HealthBar;
 	
 	import utilities.*;
@@ -34,6 +35,8 @@
 		
 		public function Root() {
 			// constructor code
+			
+			this.scrollRect = new Rectangle(0,0,600,400);
 			healthbar = new HealthBar(100, 100, 0.5, 0.5);
 			stage.addChild(healthbar);
 			keyPresses = new KeyObject(this.stage);

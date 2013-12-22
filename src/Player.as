@@ -3,6 +3,7 @@
 	import enemies.Baby;
 	import flash.display.MovieClip;
 	import flash.events.Event;
+	import flash.geom.Rectangle;
 	import utilities.*;
 	
 	
@@ -68,14 +69,18 @@
 					ychange += speed;
 				}
 				
+				var c:Rectangle = this.rootRef.scrollRect;
 			if (!this.rootRef.collidesWithWall(this.x + xchange, this.y + ychange)) {
-				this.x += xchange;
-				this.y += ychange;
+				 this.rootRef.scrollRect = new Rectangle(c.x += xchange, c.y += ychange, c.width, c.height);
 			} else if (!this.rootRef.collidesWithWall(this.x, this.y + ychange)) {
-				this.y += ychange;
+				 this.rootRef.scrollRect = new Rectangle(c.x, c.y += ychange, c.width, c.height);
+				
 			} else if (!this.rootRef.collidesWithWall(this.x + xchange, this.y)) {
-				this.x += xchange;
+				 this.rootRef.scrollRect = new Rectangle(c.x += xchange, c.y, c.width, c.height);
 			}
+			c = this.rootRef.scrollRect;
+			this.x = c.width / 2 + c.x;
+			this.y = c.height / 2 + c.y;
 			
 			this.animations.gotoAndPlay(this.Action + "_" + this.Direction);
 			

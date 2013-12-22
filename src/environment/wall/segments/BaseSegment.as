@@ -1,5 +1,4 @@
-package environment.wall.segments 
-{
+package environment.wall.segments {
 	import basics.hitboxes.InteractionBox;
 	import flash.display.MovieClip;
 	
@@ -7,26 +6,25 @@ package environment.wall.segments
 	 * ...
 	 * @author Gabriel
 	 */
-	public dynamic class BaseSegment extends MovieClip 
-	{
-				
+	public dynamic class BaseSegment extends MovieClip {
+		
 		public var hitbox1:InteractionBox;
 		
-		
-		public function get Hitboxes():Array { 
-			if (hitbox1 == null) return new Array();
-			else return new Array(hitbox1);
+		public function get Hitboxes():Array {
+			if (hitbox1 == null)
+				return new Array();
+			else
+				return new Array(hitbox1);
 		}
 		
-		public function BaseSegment() 
-		{
+		public function BaseSegment() {
 			super();
 		}
 		
 		public function get isDoor():Boolean {
 			return this is HorizontalDoor;
 		}
-		
+	
 	}
 
 }
