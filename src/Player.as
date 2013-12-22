@@ -1,5 +1,6 @@
 ﻿package  {
 	
+	import enemies.Baby;
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import utilities.*;
@@ -19,7 +20,7 @@
 			this.rootRef = root as Root;
 			this.rootRef.player = this;
 			_direction = Directions.DOWN;
-			addEventListener(Event.ENTER_FRAME,loop,false,0,true);
+			addEventListener(Event.ENTER_FRAME, loop, false, 0, true);
 		}
 		
 		public function get Direction():String {
@@ -72,6 +73,10 @@
 			if (!this.rootRef.collidesWithWall(this.x + xchange, this.y + ychange)) {
 				this.x += xchange;
 				this.y += ychange;
+			} else if (!this.rootRef.collidesWithWall(this.x, this.y + ychange)) {
+				this.y += ychange;
+			} else if (!this.rootRef.collidesWithWall(this.x + xchange, this.y)) {
+				this.x += xchange;
 			}
 			
 			this.animations.gotoAndPlay(this.Action + "_" + this.Direction);

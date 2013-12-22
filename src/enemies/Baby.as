@@ -1,11 +1,13 @@
 ﻿package enemies {
 	
-	import base.hitboxes.BodyBox;
+	import basics.hitboxes.BodyBox;
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import utilities.*;
 	
 	public class Baby extends MovieClip {
+		
+		public static var blabla = "String";
 		
 		private var HorizontalLimit = 100;
 		private var VerticalLimit = 50;
@@ -32,11 +34,11 @@
 		public function Baby() {
 			// constructor code
 			this.rootRef = this.root as Root;
-			Wait = rootRef.random(25); ;
+			Wait = Random.random(25); ;
 			addEventListener(Event.ENTER_FRAME, loop, false, 0, true);
 			FixPositionX = int(this.x);
 			FixPositionY  = int(this.y);
-			this.speed = rootRef.random(6)+2;
+			this.speed = Random.random(6)+2;
 			xspeed = this.speed;
 			yspeed = 0;
 			this.direction = Directions.RIGHT;
@@ -71,7 +73,7 @@
 			
 			if ((xspeed != 0 || yspeed != 0)) {
 				if (this.rootRef.collidesWithWall(this.x + xspeed, this.y + yspeed) || this.rootRef.collidesWithWall(this.x + xspeed + this.width*2/3, this.y + yspeed)) {
-					xspeed = -xspeed;
+					xspeed = -xspeed;				
 					this.direction = Directions.oppositeOf(this.direction);
 				}
 				this.nextAction = "baby_walk_";

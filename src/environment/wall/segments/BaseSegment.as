@@ -1,6 +1,6 @@
 package environment.wall.segments 
 {
-	import base.hitboxes.InteractionBox;
+	import basics.hitboxes.InteractionBox;
 	import flash.display.MovieClip;
 	
 	/**
@@ -11,7 +11,12 @@ package environment.wall.segments
 	{
 				
 		public var hitbox1:InteractionBox;
-		public var hitbox2:InteractionBox;
+		
+		
+		public function getHitboxes():Array { 
+			if (hitbox1 == null) return new Array();
+			else return new Array(hitbox1);
+		}
 		
 		public function BaseSegment() 
 		{

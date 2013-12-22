@@ -1,10 +1,10 @@
 ﻿package environment.wall {
 	
+	import basics.hitboxes.Hitbox;
 	import environment.wall.segments.HorizontalDoor;
 	import flash.display.MovieClip;
-	import flash.display.Stage;
 	import flash.events.Event;
-	import base.hitboxes.Hitbox;
+	import utilities.Random;
 
 	
 	
@@ -143,7 +143,7 @@
 			
 			if (this.name == HORIZONTAL_DOOR_NAME) {
 				this.gotoAndStop(HORIZONTAL_DOOR);
-				var random = ((int)(Math.random()*100))%7 +1
+				var random = Random.random(7) +1
 				if (leftWall != null) {
 					this.y = leftWall.y;
 					this.x = leftWall.x + this.width - 6;

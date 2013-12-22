@@ -1,5 +1,6 @@
 ﻿package  {
 	
+	import basics.hitboxes.InteractionBox;
 	import environment.wall.Wall;
 	import flash.display.MovieClip;
 	import flash.events.Event;
@@ -15,7 +16,7 @@
 		var healthbar:HealthBar;
 		private var _walls:Array = new Array();
 		
-		private var key:KeyObject;
+		private var keyPresses:KeyObject;
 		private var _leftPressed:Boolean = false; //keeps track of whether the left arrow key is pressed
 		private var _rightPressed:Boolean = false; //same, but for right key pressed
 		private var _upPressed:Boolean = false; //...up key pressed
@@ -28,7 +29,7 @@
 			// constructor code
 			healthbar = new HealthBar(100, 100, 0.5, 0.5);	
 			stage.addChild(healthbar);
-			key = new KeyObject(this.stage);
+			keyPresses = new KeyObject(this.stage);
 			addEventListener(Event.ENTER_FRAME, loop, false, 0, true);
 						
 		}
@@ -118,39 +119,36 @@
 		
 		public function checkKeypresses():void
 		{
-			if(key.isDown(KeyCodes.LeftArrow) || key.isDown(KeyCodes.a)){ // if left arrow or A is pressed
+			if(keyPresses.isDown(KeyCodes.LeftArrow) || keyPresses.isDown(KeyCodes.a)){ // if left arrow or A is pressed
 				_leftPressed = true;
 			} else {
 				_leftPressed = false;
 			}
-			if(key.isDown(KeyCodes.UpArrow) || key.isDown(KeyCodes.w)){ // if up arrow or W is pressed
+			if(keyPresses.isDown(KeyCodes.UpArrow) || keyPresses.isDown(KeyCodes.w)){ // if up arrow or W is pressed
 				_upPressed = true;
 			} else {
 				_upPressed = false;
 			}                   
 			
-			if(key.isDown(KeyCodes.RightArrow) || key.isDown(KeyCodes.d)){ //if right arrow or D is pressed
+			if(keyPresses.isDown(KeyCodes.RightArrow) || keyPresses.isDown(KeyCodes.d)){ //if right arrow or D is pressed
 				_rightPressed = true;
 			} else {
 				_rightPressed = false;
 			}
 			
-			if(key.isDown(KeyCodes.DownArrow) || key.isDown(KeyCodes.s)){ //if down arrow or S is pressed
+			if(keyPresses.isDown(KeyCodes.DownArrow) || keyPresses.isDown(KeyCodes.s)){ //if down arrow or S is pressed
 				_downPressed = true;
 			} else {
 				_downPressed = false;
 			}
 			
-			if(key.isDown(KeyCodes.Spacebar)){ //if down arrow or S is pressed
+			if(keyPresses.isDown(KeyCodes.Spacebar)){ //if down arrow or S is pressed
 				_attackPressed = true;
 			} else {
 				_attackPressed = false;
 			}
 		}
-		
-		public function random(n:int) {
-			return ((int)(Math.random()*1000)) %n;
-		}
+
 		
 		public function collidesWithWall(x_next:Number, y_next:Number) {
 			
@@ -159,12 +157,10 @@
 					if (wall.door == null) {
 						continue;
 					}
-					var door:MovieClip = wall.door;
-					if (door.hitbox1.hitTestPoint(x_next, y_next,false) ){
-						return true;
-					}
-					if (door.hitbox2 != null && door.hitbox2.hitTestPoint(x_next, y_next,false)) {
-						return true;
+					for each (var hitbox:InteractionBox in wall.door.getHitboxes()) {
+						if (hitbox.hitTestPoint(x_next, y_next, false)) {
+							return true;
+						}
 					}
 				} else if (wall.hitbox.hitTestPoint(x_next, y_next,false)) {
 					return true;
