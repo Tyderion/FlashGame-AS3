@@ -23,7 +23,7 @@
 			
 		}
 		
-		public function get isDoorOpen() {
+		public function get isDoorOpen():Boolean {
 			return this.currentFrame >= 3;
 		}
 	}
