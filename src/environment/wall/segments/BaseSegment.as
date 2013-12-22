@@ -1,5 +1,5 @@
-package environment.wall.segments {
-	import basics.hitboxes.InteractionBox;
+﻿package environment.wall.segments {
+	import basics.hitboxes.CollisionBox;
 	import flash.display.MovieClip;
 	
 	/**
@@ -8,7 +8,7 @@ package environment.wall.segments {
 	 */
 	public dynamic class BaseSegment extends MovieClip {
 		
-		public var hitbox1:InteractionBox;
+		public var hitbox1:CollisionBox;
 		
 		public function get Hitboxes():Array {
 			if (hitbox1 == null)

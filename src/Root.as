@@ -1,7 +1,7 @@
 ﻿package {
 	
 	import basics.BloodSplatter;
-	import basics.hitboxes.InteractionBox;
+	import basics.hitboxes.CollisionBox;
 	import enemies.Baby;
 	import environment.nature.Tree;
 	import environment.wall.segments.BaseSegment;
