@@ -1,11 +1,13 @@
 ﻿package environment.wall.segments {
 	import basics.hitboxes.CollisionBox;
+	import basics.hitboxes.InteractionBox;
 	import utilities.Random;
+	import flash.events.Event;
 	
 	public class HorizontalDoor extends BaseSegment {
 		
-		
-		
+		private var rootRef:Root;
+		public var DoorTrigger:InteractionBox;
 		public var hitbox2:CollisionBox;
 		public var hitbox3:CollisionBox;
 		public var hitbox4:CollisionBox;
@@ -18,14 +20,24 @@
 			return hitboxes;
 		}
 		
-		public function HorizontalDoor() {
-			this.gotoAndStop(Random.random(7) + 1);
-			
-		}
-		
 		public function get isDoorOpen():Boolean {
 			return this.currentFrame >= 3;
 		}
+		
+		public function HorizontalDoor() {
+			this.rootRef = root as Root;
+			addEventListener(Event.ENTER_FRAME, loop, false, 0, true);
+		
 	}
-	
+		
+		public function loop(e:Event):void {
+		
+		if (DoorTrigger.hitTestObject(rootRef.player)) {
+			this.gotoAndPlay("open");
+		}
+		else {
+		this.gotoAndStop("closed");
+		}
+}
+}
 }
