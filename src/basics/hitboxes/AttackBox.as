@@ -6,7 +6,6 @@
 	
 	public class AttackBox extends Hitbox {
 		
-		
 		public var delegate:IAttackTrigger;
 		
 		public function AttackBox() {
@@ -16,8 +15,8 @@
 		}
 		
 		public function checkForPlayer(e:Event) {
-			if (this.hitTestObject((root as Root).player)) {
-				if (this.delegate != null) {
+			if (this.delegate != null) {
+				if (this.hitTestObject((root as Root).player)) {
 					this.delegate.attackBoxTriggeredByPlayer(this);
 				}
 			}
@@ -27,7 +26,7 @@
 			removeEventListener(Event.ENTER_FRAME, checkForPlayer, false);
 			removeEventListener(Event.REMOVED_FROM_STAGE, cleanup, false);
 		}
-		
+	
 	}
 
 }
