@@ -34,7 +34,7 @@
 		public function Baby() {
 			// constructor code
 			this.rootRef = this.root as Root;
-			Wait = Random.random(25); ;
+			Wait = Random.random(25); 
 			addEventListener(Event.ENTER_FRAME, loop, false, 0, true);
 			FixPositionX = int(this.x);
 			FixPositionY  = int(this.y);
