@@ -63,10 +63,13 @@
 			} else {
 				removeEventListener(Event.ENTER_FRAME, wait, false)
 				addEventListener(Event.ENTER_FRAME, walk, false, 0, true);
-			}
+			}			
 		}
 		
 		public function walk(e:Event):void {
+			if (this.AttackTriggerRight && this.AttackTriggerRight.delegate != this) this.AttackTriggerRight.delegate = this;
+			if (this.AttackTriggerLeft && this.AttackTriggerLeft.delegate != this)  this.AttackTriggerLeft.delegate = this;
+			
 			if (this.x < (FixPositionX - HorizontalLimit)) {
 				xspeed = this.speed;
 				this.direction = Directions.RIGHT;
@@ -98,10 +101,7 @@
 			}
 			
 			this.gotoAndStop(this.nextAction + this.direction);
-			if (this.direction == Directions.RIGHT)
-				this.AttackTriggerRight.delegate = this;
-			else
-				this.AttackTriggerLeft.delegate = this;
+			
 		}
 	}
 
