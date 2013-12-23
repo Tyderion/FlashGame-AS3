@@ -44,31 +44,17 @@
 			addEventListener(Event.ENTER_FRAME, wait, false, 0, true);
 		}
 		
-		public function attackBoxTriggeredByPlayer(box:AttackBox) {
-			xspeed = 0;
-			yspeed = 0;
-			this.gotoAndStop("hit_" + this.direction);
-			this.attackAnimation.delegate = this;
-			removeEventListener(Event.ENTER_FRAME, walk, false);
-			removeEventListener(Event.ENTER_FRAME, wait, false);
-		}
-		
-		public function lastFrameEnded(animation:MovieClip) {
-			this.parent.removeChild(this);
-		}
-		
 		public function wait(e:Event) {
 			if (Wait > 0) {
 				Wait--;
 			} else {
 				removeEventListener(Event.ENTER_FRAME, wait, false)
 				addEventListener(Event.ENTER_FRAME, walk, false, 0, true);
-			}			
+			}
 		}
 		
 		public function walk(e:Event):void {
-			if (this.AttackTriggerRight && this.AttackTriggerRight.delegate != this) this.AttackTriggerRight.delegate = this;
-			if (this.AttackTriggerLeft && this.AttackTriggerLeft.delegate != this)  this.AttackTriggerLeft.delegate = this;
+			this.setAttackTriggerDelegate()
 			
 			if (this.x < (FixPositionX - HorizontalLimit)) {
 				xspeed = this.speed;
@@ -101,8 +87,29 @@
 			}
 			
 			this.gotoAndStop(this.nextAction + this.direction);
-			
+		
+		}
+		
+		private function setAttackTriggerDelegate() {
+			if (this.AttackTriggerRight && this.AttackTriggerRight.delegate != this)
+				this.AttackTriggerRight.delegate = this;
+			if (this.AttackTriggerLeft && this.AttackTriggerLeft.delegate != this)
+				this.AttackTriggerLeft.delegate = this;
+		}
+		
+		public function attackBoxTriggeredByPlayer(box:AttackBox) {
+			xspeed = 0;
+			yspeed = 0;
+			this.gotoAndStop("hit_" + this.direction);
+			this.attackAnimation.delegate = this;
+			removeEventListener(Event.ENTER_FRAME, walk, false);
+			removeEventListener(Event.ENTER_FRAME, wait, false);
+		}
+		
+		public function lastFrameEnded(animation:MovieClip) {
+			this.parent.removeChild(this);
 		}
 	}
 
 }
+
