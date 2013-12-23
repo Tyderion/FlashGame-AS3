@@ -8,7 +8,7 @@ package utilities.interfaces
 	 */
 	public interface ILastFrameTrigger 
 	{
-		public function lastFrameEnded(mv:MovieClip);
+		function lastFrameEnded(mv:MovieClip);
 	}
 	
 }

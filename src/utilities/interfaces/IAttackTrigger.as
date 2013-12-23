@@ -8,7 +8,7 @@ package utilities.interfaces
 	 */
 	public interface IAttackTrigger 
 	{
-		public function attackBoxTriggeredByPlayer(attackBox:IAttackBox);
+		function attackBoxTriggeredByPlayer(attackBox:AttackBox);
 	}
 	
 }
