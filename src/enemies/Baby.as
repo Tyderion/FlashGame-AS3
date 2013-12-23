@@ -1,6 +1,7 @@
 ﻿package enemies {
 	
 	import basics.hitboxes.BodyBox;
+	import basics.hitboxes.AttackBox;
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import utilities.*;
@@ -13,7 +14,6 @@
 		private var VerticalLimit = 50;
 		
 		private var rootRef:Root;
-		
 		private var speed:Number;
 		private var xspeed:Number;
 		private var yspeed:Number;
@@ -24,6 +24,7 @@
 		public var animations:MovieClip;
 		public var body_hit:BodyBox;
 		public var feet_hit:BodyBox;
+		public var AttackTrigger:AttackBox;
 		
 
 		
@@ -79,7 +80,14 @@
 				this.x += xspeed;
 				this.y += yspeed;
 			}
-			animations.gotoAndStop(this.nextAction+this.direction);
+				if (AttackTrigger.hitTestObject(rootRef.player)) {
+				this.nextAction = "hit_";
+				xspeed = 0;
+				yspeed = 0;
+				removeChild(AttackTrigger);
+		}
+		
+			this.gotoAndStop(this.nextAction+this.direction);
 		}
 	}
 	
