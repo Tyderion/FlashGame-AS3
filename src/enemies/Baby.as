@@ -6,8 +6,9 @@
 	import flash.events.Event;
 	import utilities.*;
 	import utilities.interfaces.IAttackTrigger;
+	import utilities.interfaces.ILastFrameTrigger;
 	
-	public class Baby extends MovieClip implements IAttackTrigger {
+	public class Baby extends MovieClip implements IAttackTrigger, ILastFrameTrigger {
 		
 		public static var blabla = "String";
 		
@@ -22,6 +23,8 @@
 		private var nextAction:String = "idle";
 	
 		public var AttackTrigger:AttackBox;
+		
+		public var attackAnimation: LastFrameTrigger;
 		
 
 		
@@ -40,7 +43,6 @@
 			yspeed = 0;
 			this.direction = Directions.RIGHT;
 			this.AttackTrigger.delegate = this;
-			
 			addEventListener(Event.ENTER_FRAME, wait, false, 0, true);
 		}
 		
@@ -51,9 +53,14 @@
 					yspeed = 0;
 					removeChild(AttackTrigger);
 					this.gotoAndStop("hit_" + this.direction);
+					this.attackAnimation.delegate = this;
 					removeEventListener(Event.ENTER_FRAME, walk, false);
 					removeEventListener(Event.ENTER_FRAME, wait, false);
 			}
+		}
+		
+		public function lastFrameEnded(animation:MovieClip) {
+			this.parent.removeChild(this);
 		}
 		
 		public function wait(e:Event) {
