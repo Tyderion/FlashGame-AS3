@@ -23,7 +23,7 @@
 		}
 		
 		public function get isDoorOpen():Boolean {
-			return this.currentFrame >= 3;
+			return this.currentFrame >= 8;
 		}
 		
 		public function HorizontalDoor() {
@@ -35,7 +35,7 @@
 		
 		public function loop(e:Event):void {
 		
-		if (DoorTrigger.hitTestObject(rootRef.player) && !this.doorOpening) {
+		if (DoorTrigger.hitTestObject(rootRef.player) && !this.doorOpening && this.rootRef.attackPressed) {
 			this.gotoAndPlay("open");
 			this.doorOpening = true;
 		}
