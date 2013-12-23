@@ -4,6 +4,7 @@
 	import basics.hitboxes.CollisionBox;
 	import enemies.Baby;
 	import environment.nature.Tree;
+	import environment.nature.Grass;
 	import environment.wall.segments.BaseSegment;
 	import environment.wall.segments.HorizontalDoor;
 	import environment.wall.Wall;

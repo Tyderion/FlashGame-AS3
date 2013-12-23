@@ -1,14 +1,14 @@
 ﻿package environment.wall.segments {
-	import basics.hitboxes.InteractionBox;
+	import basics.hitboxes.CollisionBox;
 	import utilities.Random;
 	
 	public class HorizontalDoor extends BaseSegment {
 		
 		
 		
-		public var hitbox2:InteractionBox;
-		public var hitbox3:InteractionBox;
-		public var hitbox4:InteractionBox;
+		public var hitbox2:CollisionBox;
+		public var hitbox3:CollisionBox;
+		public var hitbox4:CollisionBox;
 		
 		override public function get Hitboxes():Array {
 			var hitboxes:Array = super.Hitboxes;
