@@ -12,6 +12,8 @@
 		public var hitbox3:CollisionBox;
 		public var hitbox4:CollisionBox;
 		
+		private var doorOpening:Boolean = false;
+		
 		override public function get Hitboxes():Array {
 			var hitboxes:Array = super.Hitboxes;
 			if (hitbox2 != null) hitboxes.push(hitbox2);
@@ -26,17 +28,20 @@
 		
 		public function HorizontalDoor() {
 			this.rootRef = root as Root;
+			this.gotoAndStop("closed");
 			addEventListener(Event.ENTER_FRAME, loop, false, 0, true);
 		
 	}
 		
 		public function loop(e:Event):void {
 		
-		if (DoorTrigger.hitTestObject(rootRef.player)) {
+		if (DoorTrigger.hitTestObject(rootRef.player) && !this.doorOpening) {
 			this.gotoAndPlay("open");
+			this.doorOpening = true;
 		}
-		else {
-		this.gotoAndStop("closed");
+		
+		if (this.currentFrame == this.totalFrames && this.doorOpening) {
+			stop();
 		}
 }
 }
