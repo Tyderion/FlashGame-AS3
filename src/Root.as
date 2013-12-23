@@ -15,7 +15,8 @@
 	import utilities.*;
 	import vendor.KeyObject;
 	
-	[SWF(width="600", height="400")] // Override document window size with SWF Metadata Tags [SWF(width='400', height='300', backgroundColor='#ffffff', frameRate='30')]
+	[SWF(width="600",height="400")] // Override document window size with SWF Metadata Tags [SWF(width='400', height='300', backgroundColor='#ffffff', frameRate='30')]
+	
 	public dynamic class Root extends MovieClip {
 		
 		var healthbar:HealthBar;
@@ -30,16 +31,14 @@
 		
 		public var scrollRectWidth:Number = 600;
 		public var scrollRectHeight:Number = 400;
-	
-		public var player:Player;
 		
+		public var player:Player;
 		
 		private var timesToSort:Number = 3;
 		
 		public function Root() {
 			
-			
-			this.scrollRect = new Rectangle(this.player.x -scrollRectWidth/2 ,this.player.y - scrollRectHeight/2,600,400);
+			this.scrollRect = new Rectangle(this.player.x - scrollRectWidth / 2, this.player.y - scrollRectHeight / 2, 600, 400);
 			healthbar = new HealthBar(100, 100, 0.5, 0.5);
 			stage.addChild(healthbar);
 			keyPresses = new KeyObject(this.stage);
@@ -60,15 +59,15 @@
 						if (childClip2 is Environment || childClip2 is Wall) { //TODO: Loop through all?
 							if (childClip == childClip2)
 								continue;
-							if (childClip.y < childClip2.y && getChildIndex(childClip) > getChildIndex(childClip2) 
-							 || childClip.y > childClip2.y && getChildIndex(childClip) < getChildIndex(childClip2)) {
+							if (childClip.y < childClip2.y && getChildIndex(childClip) > getChildIndex(childClip2) || childClip.y > childClip2.y && getChildIndex(childClip) < getChildIndex(childClip2)) {
 								setChildIndex(childClip, getChildIndex(childClip2))
 							}
 						}
 					}
 				}
 			}
-			if (timesToSort == 0) 			removeEventListener(Event.ENTER_FRAME, sort, false);
+			if (timesToSort == 0)
+				removeEventListener(Event.ENTER_FRAME, sort, false);
 		}
 		
 		var wait = 10;
@@ -206,14 +205,30 @@
 					var wall:BaseSegment = childClip as BaseSegment;
 					
 					for each (var hitbox:CollisionBox in wall.Hitboxes) {
-							if (hitbox.hitTestPoint(x_next, y_next, false)) {
-								return true;
-							}
+						if (hitbox.hitTestPoint(x_next, y_next, false)) {
+							return true;
 						}
+					}
 				}
 			}
 			return false;
 		
+		}
+		
+		private var areHitboxesVisible = false;
+		private var canSwapVisiblityOfHitboxes = false;
+		
+		public function get shouldHitboxBeVisible() {
+			if (this.keyPresses == null) return false;
+			if (this.keyPresses.isDown(KeyCodes.H)) {
+				if (this.canSwapVisiblityOfHitboxes) {
+					areHitboxesVisible = !areHitboxesVisible;
+					this.canSwapVisiblityOfHitboxes = false;
+				}
+			} else {
+				this.canSwapVisiblityOfHitboxes = true;
+			}
+			return areHitboxesVisible;
 		}
 	}
 
