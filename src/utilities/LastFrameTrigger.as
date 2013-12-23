@@ -5,7 +5,8 @@ package utilities
 	import utilities.interfaces.ILastFrameTrigger;
 	
 	/**
-	 * ...
+	 * Triggers the delegate (must implement ILastFrameTrigger) when the last frame is exiting. 
+	 * Set this class as the BaseClass in the Symbol-Properties in Flash Professional. No Need to implement the subclass for simple animations.
 	 * @author Gabriel
 	 */
 	public class LastFrameTrigger extends MovieClip 

@@ -8,7 +8,7 @@
 	import utilities.interfaces.IAttackTrigger;
 	import utilities.interfaces.ILastFrameTrigger;
 	
-	public class Baby extends MovieClip implements IAttackTrigger, ILastFrameTrigger {
+	public class Baby extends MovieClip implements Iattac, ILastFrameTrigger {
 		
 		public static var blabla = "String";
 		

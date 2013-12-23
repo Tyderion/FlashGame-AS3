@@ -4,6 +4,10 @@
 	import flash.events.Event;
 	import utilities.interfaces.IAttackTrigger;
 	
+	/**
+	 * Triggers if the player is within the attackbox (if the delegate which implements IAttackTrigger is set).
+	 * @author Gabriel Nadler
+	 */
 	public class AttackBox extends Hitbox {
 		
 		public var delegate:IAttackTrigger;
@@ -26,7 +30,5 @@
 			removeEventListener(Event.ENTER_FRAME, checkForPlayer, false);
 			removeEventListener(Event.REMOVED_FROM_STAGE, cleanup, false);
 		}
-	
 	}
-
 }
