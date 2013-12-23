@@ -21,7 +21,7 @@
 		var healthbar:HealthBar;
 		private var _walls:Array = new Array();
 		
-		private var keyPresses:KeyObject;
+		public var keyPresses:KeyObject;
 		private var _leftPressed:Boolean = false; //keeps track of whether the left arrow key is pressed
 		private var _rightPressed:Boolean = false; //same, but for right key pressed
 		private var _upPressed:Boolean = false; //...up key pressed
