@@ -3,8 +3,8 @@
 	import basics.BloodSplatter;
 	import basics.hitboxes.CollisionBox;
 	import enemies.Baby;
+	import environment.Environment;
 	import environment.nature.Tree;
-	import environment.nature.Grass;
 	import environment.wall.segments.BaseSegment;
 	import environment.wall.segments.HorizontalDoor;
 	import environment.wall.Wall;
@@ -54,10 +54,10 @@
 			timesToSort--;
 			for (var i = 0; i < this.numChildren; i++) {
 				var childClip:MovieClip = getChildAt(i) as MovieClip;
-				if (childClip is Tree || childClip is BaseSegment) { //TODO: Loop through all?
+				if (childClip is Environment || childClip is BaseSegment) { //TODO: Loop through all?
 					for (var j = 0; j < this.numChildren; j++) {
 						var childClip2:MovieClip = getChildAt(j) as MovieClip;
-						if (childClip2 is Tree || childClip2 is Wall) { //TODO: Loop through all?
+						if (childClip2 is Environment || childClip2 is Wall) { //TODO: Loop through all?
 							if (childClip == childClip2)
 								continue;
 							if (childClip.y < childClip2.y && getChildIndex(childClip) > getChildIndex(childClip2) 
@@ -121,7 +121,7 @@
 			
 			for (var i = 0; i < this.numChildren; i++) {
 				var childClip:MovieClip = getChildAt(i) as MovieClip;
-				if (childClip is Tree || childClip is Baby) {
+				if (childClip is Environment || childClip is Baby) {
 					if (shouldSwapWithPlayer(childClip, 0)) {
 						setChildIndex(childClip, getChildIndex(player))
 					}
