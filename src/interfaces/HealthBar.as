@@ -5,13 +5,11 @@
 	
 	public class HealthBar extends MovieClip {
 		
-		
 		private var maxHealth:Number = 100;
 		private var _currentHealth:Number;
 		
-		
-		public function HealthBar(x:Number, y:Number, xscale:Number, yscale: Number) {
-			// constructor codemaxHealth
+		public function HealthBar(x:Number, y:Number, xscale:Number, yscale:Number) {
+			super();
 			this.currentHealth = this.maxHealth;
 			this.x = x;
 			this.y = y;
@@ -20,17 +18,14 @@
 		}
 		
 		public function get HealthPercentage():Number {
-			return 1.0/this.maxHealth* this.currentHealth;
+			return 1.0 / this.maxHealth * this.currentHealth;
 		}
-
-
-		public function get currentHealth():Number
-		{
+		
+		public function get currentHealth():Number {
 			return _currentHealth;
 		}
-
-		public function set currentHealth(value:Number):void
-		{
+		
+		public function set currentHealth(value:Number):void {
 			if (value > this.maxHealth) {
 				value = this.maxHealth;
 			}
@@ -39,11 +34,9 @@
 		}
 		
 		private function get HealthFrame():int {
-			return (int)(this.HealthPercentage*10+1);
+			return (int)(this.HealthPercentage * 10 + 1);
 		}
 	
-		
-
 	}
-	
+
 }

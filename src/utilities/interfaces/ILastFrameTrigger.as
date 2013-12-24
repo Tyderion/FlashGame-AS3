@@ -1,14 +1,12 @@
-package utilities.interfaces 
-{
+package utilities.interfaces {
 	import flash.display.MovieClip;
 	
 	/**
 	 * ...
 	 * @author Gabriel
 	 */
-	public interface ILastFrameTrigger 
-	{
+	public interface ILastFrameTrigger {
 		function lastFrameEnded(mv:MovieClip);
 	}
-	
+
 }

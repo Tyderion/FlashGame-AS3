@@ -1,6 +1,6 @@
 package utilities {
-	public final class KeyCodes
-	{
+	
+	public final class KeyCodes {
 		
 		// I used http://www.dakmm.com/?p=272 as a reference to get the keyCode numbers for each key
 		public static const Backspace:uint = 8

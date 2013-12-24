@@ -33,6 +33,7 @@
 		private var Wait;
 		
 		public function Baby() {
+			super();
 			this.rootRef = this.root as Root;
 			Wait = Random.random(25);
 			FixPositionX = int(this.x);

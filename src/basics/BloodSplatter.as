@@ -4,7 +4,6 @@
 	import flash.events.Event;
 	import utilities.Random;
 	
-	
 	public dynamic class BloodSplatter extends MovieClip {
 		
 		public function BloodSplatter() {
@@ -12,14 +11,12 @@
 			addEventListener(Event.ENTER_FRAME, loop, false, 0, true);
 		}
 		
-		
 		private function setup():void {
 			this.scaleX = Random.random(4) - 2;
 			this.scaleY = Random.random(2);
 			this.gotoAndPlay(1);
 		}
 		
-				
 		public function loop(e:Event):void {
 			if (this.currentFrame == this.totalFrames) {
 				removeEventListener(Event.ENTER_FRAME, loop, false);
@@ -28,5 +25,5 @@
 			}
 		}
 	}
-	
+
 }

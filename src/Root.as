@@ -7,7 +7,6 @@
 	import environment.nature.Tree;
 	import environment.wall.segments.BaseSegment;
 	import environment.wall.segments.HorizontalDoor;
-	import environment.wall.Wall;
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.geom.Rectangle;
@@ -20,7 +19,6 @@
 	public dynamic class Root extends MovieClip {
 		
 		var healthbar:HealthBar;
-		private var _walls:Array = new Array();
 		
 		public var keyPresses:KeyObject;
 		private var _leftPressed:Boolean = false; //keeps track of whether the left arrow key is pressed
@@ -37,7 +35,7 @@
 		private var timesToSort:Number = 3;
 		
 		public function Root() {
-			
+			super();
 			this.scrollRect = new Rectangle(this.player.x - scrollRectWidth / 2, this.player.y - scrollRectHeight / 2, 600, 400);
 			healthbar = new HealthBar(100, 100, 0.5, 0.5);
 			stage.addChild(healthbar);
@@ -56,7 +54,7 @@
 				if (childClip is Environment || childClip is BaseSegment) { //TODO: Loop through all?
 					for (var j = 0; j < this.numChildren; j++) {
 						var childClip2:MovieClip = getChildAt(j) as MovieClip;
-						if (childClip2 is Environment || childClip2 is Wall) { //TODO: Loop through all?
+						if (childClip2 is Environment || childClip2 is BaseSegment) { //TODO: Loop through all?
 							if (childClip == childClip2)
 								continue;
 							if (childClip.y < childClip2.y && getChildIndex(childClip) > getChildIndex(childClip2) || childClip.y > childClip2.y && getChildIndex(childClip) < getChildIndex(childClip2)) {
@@ -92,14 +90,6 @@
 		
 		public function get attackPressed():Boolean {
 			return _attackPressed;
-		}
-		
-		public function get walls():Array {
-			return _walls;
-		}
-		
-		public function addWall(wall:Wall) {
-			this.walls.push(wall);
 		}
 		
 		public function loop(e:Event):void {
@@ -219,7 +209,8 @@
 		private var canSwapVisiblityOfHitboxes = false;
 		
 		public function get shouldHitboxBeVisible() {
-			if (this.keyPresses == null) return false;
+			if (this.keyPresses == null)
+				return false;
 			if (this.keyPresses.isDown(KeyCodes.H)) {
 				if (this.canSwapVisiblityOfHitboxes) {
 					areHitboxesVisible = !areHitboxesVisible;

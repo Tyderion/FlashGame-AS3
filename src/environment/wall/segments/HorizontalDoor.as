@@ -16,9 +16,12 @@
 		
 		override public function get Hitboxes():Array {
 			var hitboxes:Array = super.Hitboxes;
-			if (hitbox2 != null) hitboxes.push(hitbox2);
-			if (hitbox3 != null) hitboxes.push(hitbox3);
-			if (hitbox4 != null) hitboxes.push(hitbox4);
+			if (hitbox2 != null)
+				hitboxes.push(hitbox2);
+			if (hitbox3 != null)
+				hitboxes.push(hitbox3);
+			if (hitbox4 != null)
+				hitboxes.push(hitbox4);
 			return hitboxes;
 		}
 		
@@ -27,22 +30,23 @@
 		}
 		
 		public function HorizontalDoor() {
+			super();
 			this.rootRef = root as Root;
 			this.gotoAndStop("closed");
 			addEventListener(Event.ENTER_FRAME, loop, false, 0, true);
 		
-	}
+		}
 		
 		public function loop(e:Event):void {
-		
-		if (DoorTrigger.hitTestObject(rootRef.player) && !this.doorOpening && this.rootRef.attackPressed) {
-			this.gotoAndPlay("open");
-			this.doorOpening = true;
+			
+			if (DoorTrigger.hitTestObject(rootRef.player) && !this.doorOpening && this.rootRef.attackPressed) {
+				this.gotoAndPlay("open");
+				this.doorOpening = true;
+			}
+			
+			if (this.currentFrame == this.totalFrames && this.doorOpening) {
+				stop();
+			}
 		}
-		
-		if (this.currentFrame == this.totalFrames && this.doorOpening) {
-			stop();
-		}
-}
-}
+	}
 }
