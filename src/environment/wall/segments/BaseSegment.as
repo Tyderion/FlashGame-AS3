@@ -1,12 +1,13 @@
 ﻿package environment.wall.segments {
 	import basics.hitboxes.CollisionBox;
+	import environment.Environment;
 	import flash.display.MovieClip;
 	
 	/**
 	 * ...
 	 * @author Gabriel
 	 */
-	public dynamic class BaseSegment extends MovieClip {
+	public dynamic class BaseSegment extends Environment {
 		
 		public var hitbox1:CollisionBox;
 		

@@ -9,7 +9,7 @@
 	import utilities.interfaces.IAttackTrigger;
 	import utilities.interfaces.ILastFrameTrigger;
 	
-	public class Skull extends MovieClip/* implements IAttackTrigger, ILastFrameTrigger*/ {
+	public class Skull extends Enemy/* implements IAttackTrigger, ILastFrameTrigger*/ {
 		
 		public static var blabla = "String";
 		
