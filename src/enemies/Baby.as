@@ -8,7 +8,7 @@
 	import utilities.interfaces.IAttackTrigger;
 	import utilities.interfaces.ILastFrameTrigger;
 	
-	public class Baby extends Enemy implements IAttackTrigger, ILastFrameTrigger {
+	public class Baby extends Enemy implements IAttackTrigger {
 		
 		public static var blabla = "String";
 		
@@ -107,7 +107,8 @@
 			removeEventListener(Event.ENTER_FRAME, wait, false);
 		}
 		
-		public function lastFrameEnded(animation:MovieClip) {
+		override public function lastFrameEnded(animation:MovieClip) {
+			super.lastFrameEnded(animation);
 			this.parent.removeChild(this);
 		}
 	}

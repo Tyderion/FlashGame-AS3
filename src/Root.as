@@ -5,7 +5,6 @@
 	import enemies.Baby;
 	import enemies.Enemy;
 	import enemies.Skull;
-	import enemies.TestEnemy;
 	import environment.Environment;
 	import environment.nature.Tree;
 	import environment.wall.segments.BaseSegment;

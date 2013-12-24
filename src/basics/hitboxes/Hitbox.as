@@ -6,7 +6,7 @@
 	
 	public class Hitbox extends MovieClip {
 		
-		private var rootRef:Root;
+		protected var rootRef:Root;
 		private var canSwapVisiblity:Boolean = true;
 		
 		public function Hitbox() {
@@ -27,3 +27,4 @@
 	}
 
 }
+	
