@@ -9,7 +9,7 @@ package environment {
 	public dynamic class Environment extends MovieClip {
 		public function Environment() {
 			super();
-			this.gotoAndPlay(Random.random(25));
+			this.gotoAndPlay(Random.random(this.totalFrames));
 		}
 	}
 }
