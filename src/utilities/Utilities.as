@@ -2,6 +2,7 @@ package utilities {
 	import basics.hitboxes.AttackBox;
 	import flash.display.MovieClip;
 	import utilities.interfaces.IAttackTrigger;
+	import utilities.interfaces.ILastFrameTrigger;
 	
 	/**
 	 * ...
@@ -13,7 +14,13 @@ package utilities {
 		
 		}
 		
-		public static function setDelegateIfExists(box:AttackBox, clip:IAttackTrigger) {
+		public static function setAttackBoxDelegate(box:AttackBox, clip:IAttackTrigger) {
+			if (box != null && box.delegate != clip) {
+				box.delegate = clip;
+			}
+		}
+		
+		public static function setLastFrameTriggerDelegate(box:LastFrameTrigger, clip:ILastFrameTrigger) {
 			if (box != null && box.delegate != clip) {
 				box.delegate = clip;
 			}

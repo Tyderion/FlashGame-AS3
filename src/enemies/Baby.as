@@ -82,7 +82,7 @@
 					xspeed = -xspeed;
 					this.direction = Directions.oppositeOf(this.direction);
 				}
-				this.nextAction = "baby_walk_";
+				this.nextAction = "baby_"+Actions.WALK+"_";
 				this.x += xspeed;
 				this.y += yspeed;
 			}
@@ -101,7 +101,7 @@
 		public function attackBoxTriggeredByPlayer(box:AttackBox) {
 			xspeed = 0;
 			yspeed = 0;
-			this.gotoAndStop("hit_" + this.direction);
+			this.gotoAndStop(Actions.HIT + "_" + this.direction);
 			this.attackAnimation.delegate = this;
 			removeEventListener(Event.ENTER_FRAME, walk, false);
 			removeEventListener(Event.ENTER_FRAME, wait, false);
