@@ -3,6 +3,7 @@
 	import basics.BloodSplatter;
 	import basics.hitboxes.CollisionBox;
 	import enemies.Baby;
+	import enemies.Skull;
 	import environment.Environment;
 	import environment.nature.Tree;
 	import environment.wall.segments.BaseSegment;
@@ -110,7 +111,7 @@
 			
 			for (var i = 0; i < this.numChildren; i++) {
 				var childClip:MovieClip = getChildAt(i) as MovieClip;
-				if (childClip is Environment || childClip is Baby) {
+				if (childClip is Environment || childClip is Baby || childClip is Skull) {
 					if (shouldSwapWithPlayer(childClip, 0)) {
 						setChildIndex(childClip, getChildIndex(player))
 					}
