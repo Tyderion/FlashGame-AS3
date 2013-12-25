@@ -13,6 +13,8 @@
 		
 		public function DamageBox() {
 			super();
+			addEventListener(Event.ENTER_FRAME, checkForEnemies, false, 0, true);
+			addEventListener(Event.ENTER_FRAME, checkForPlayer, false, 0, true);
 		}
 		
 		
@@ -35,7 +37,6 @@
 						}
 					}
 				}
-			
 			}
 		}
 	
