@@ -12,7 +12,7 @@ package enemies {
 	 * Implements ILastFrameTrigger to remove the enemy in the last frame of the death_animation.
 	 * @author Gabriel
 	 */
-	public class Enemy extends MovieClip implements ILastFrameTrigger {
+	public class Enemy extends HealthEntity implements ILastFrameTrigger {
 		
 		public var death_animation:LastFrameTrigger;
 		public var despawnTime:Number = 20; // Seconds

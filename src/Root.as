@@ -101,17 +101,7 @@
 			
 			//this.bloodSplat(Random.random(this.width), Random.random(this.height));
 			this.checkKeypresses();
-			if (wait <= 0) {
-				
-				if (healthbar.currentHealth <= 0) {
-					healthbar.currentHealth = 200;
-				} else {
-					healthbar.currentHealth = healthbar.currentHealth - 10;
-				}
-				wait = 10;
-			} else {
-				wait--;
-			}
+			healthbar.currentHealth = player.HealthPercentage;
 			
 			for (var i = 0; i < this.numChildren; i++) {
 				var childClip:MovieClip = getChildAt(i) as MovieClip;

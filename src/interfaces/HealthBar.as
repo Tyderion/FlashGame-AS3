@@ -7,37 +7,27 @@
 	 * HealthBar implements the display of a healthbar, divided into 10 steps.
 	 */
 	public class HealthBar extends MovieClip {
-		
-		private var maxHealth:Number = 100;
 		private var _currentHealth:Number;
 		
 		public function HealthBar(x:Number, y:Number, xscale:Number, yscale:Number) {
 			super();
-			this.currentHealth = this.maxHealth;
+			this.currentHealth = 1;
 			this.x = x;
 			this.y = y;
 			this.scaleX = xscale;
 			this.scaleY = yscale;
 		}
 		
-		public function get HealthPercentage():Number {
-			return 1.0 / this.maxHealth * this.currentHealth;
+		private function get HealthFrame():int {
+			return (int)(_currentHealth * (this.totalFrames -1)) + 1;
 		}
 		
-		public function get currentHealth():Number {
-			return _currentHealth;
-		}
-		
+		/**
+		 * Set the current health percentage of the healthbar between 0 and 1
+		 */
 		public function set currentHealth(value:Number):void {
-			if (value > this.maxHealth) {
-				value = this.maxHealth;
-			}
 			_currentHealth = value;
 			this.gotoAndStop(this.HealthFrame);
-		}
-		
-		private function get HealthFrame():int {
-			return (int)(this.HealthPercentage * 10 + 1);
 		}
 	
 	}
