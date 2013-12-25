@@ -26,8 +26,6 @@
 		public var AttackTriggerLeft:AttackBox;
 		public var AttackTriggerRight:AttackBox;
 		
-		public var attackAnimation:LastFrameTrigger;
-		
 		private var FixPositionX;
 		private var FixPositionY;
 		
@@ -44,6 +42,7 @@
 			yspeed = 0;
 			this.direction = Directions.RIGHT;
 			addEventListener(Event.ENTER_FRAME, wait, false, 0, true);
+			addEventListener(Event.ENTER_FRAME, death, false, 0, true);
 		}
 		
 		public function wait(e:Event) {
@@ -55,6 +54,17 @@
 			}
 		}
 		
+		
+		public function death(e:Event):void {
+			if (this.rootRef.keyPresses.isDown(KeyCodes.J)) {
+			xspeed = 0;
+			yspeed = 0;
+			this.gotoAndStop(Actions.DEATH + "_" + this.direction);
+			super.death_animation.delegate = this;
+			removeEventListener(Event.ENTER_FRAME, walk, false);
+			removeEventListener(Event.ENTER_FRAME, wait, false);
+		}
+		}
 		public function walk(e:Event):void {
 			//this.setAttackTriggerDelegate()
 			
@@ -92,26 +102,13 @@
 		
 		}
 		
+
+		
 		/*private function setAttackTriggerDelegate() {
 			if (this.AttackTriggerRight && this.AttackTriggerRight.delegate != this)
 				this.AttackTriggerRight.delegate = this;
 			if (this.AttackTriggerLeft && this.AttackTriggerLeft.delegate != this)
 				this.AttackTriggerLeft.delegate = this;
-		}
-		
-		public function attackBoxTriggeredByPlayer(box:AttackBox) {
-			xspeed = 0;
-			yspeed = 0;
-			this.gotoAndStop("hit_" + this.direction);
-			this.attackAnimation.delegate = this;
-			removeEventListener(Event.ENTER_FRAME, walk, false);
-			removeEventListener(Event.ENTER_FRAME, wait, false);
-		}
-		
-		public function lastFrameEnded(animation:MovieClip) {
-			this.parent.removeChild(this);
 		}*/
 	}
-
 }
-

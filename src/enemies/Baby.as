@@ -101,7 +101,7 @@
 		public function attackBoxTriggeredByPlayer(box:AttackBox) {
 			xspeed = 0;
 			yspeed = 0;
-			this.gotoAndStop(Actions.HIT + "_" + this.direction);
+			this.gotoAndStop(Actions.DEATH + "_" + this.direction);
 			super.death_animation.delegate = this;
 			removeEventListener(Event.ENTER_FRAME, walk, false);
 			removeEventListener(Event.ENTER_FRAME, wait, false);
