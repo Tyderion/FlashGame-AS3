@@ -4,10 +4,10 @@
 	import flash.display.MovieClip;
 	
 	/**
-	 * ...
+	 * Basic wall baseclass. Returns the hitbox of the wall and has a helperfunction to test for door.
 	 * @author Gabriel
 	 */
-	public dynamic class BaseSegment extends Environment {
+	public class BaseSegment extends Environment {
 		
 		public var hitbox1:CollisionBox;
 		

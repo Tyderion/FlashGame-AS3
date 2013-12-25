@@ -1,5 +1,8 @@
 package utilities {
 	
+	/**
+	 * Constants for the Directions.
+	 */
 	public final class Directions {
 		public static const LEFT:String = "left";
 		public static const RIGHT:String = "right";

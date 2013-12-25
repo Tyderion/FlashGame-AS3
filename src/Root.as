@@ -18,7 +18,10 @@
 	
 	[SWF(width="600",height="400")] // Override document window size with SWF Metadata Tags [SWF(width='400', height='300', backgroundColor='#ffffff', frameRate='30')]
 	
-	public dynamic class Root extends MovieClip {
+	/**
+	 * This is the document class of the project. It also serves as a coordinator between player, enemies and environment.
+	 */
+	public class Root extends MovieClip {
 		
 		var healthbar:HealthBar;
 		

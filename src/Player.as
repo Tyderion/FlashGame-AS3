@@ -7,12 +7,16 @@
 	import flash.geom.Rectangle;
 	import utilities.*;
 	
-	public dynamic class Player extends MovieClip {
+	/**
+	 * The player class controls the player movieclip. The Player is controlled by the keyboard.
+	 */
+	public class Player extends MovieClip {
 		
 		private var speed:Number = 5;
 		private var rootRef:Root;
 		public var animations:MovieClip;
 		public var feet_hit:BodyBox;
+		public var body_hit:BodyBox;
 		private var _direction;
 		
 		public function Player() {

@@ -3,6 +3,9 @@
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	
+	/**
+	 * HealthBar implements the display of a healthbar, divided into 10 steps.
+	 */
 	public class HealthBar extends MovieClip {
 		
 		private var maxHealth:Number = 100;

@@ -7,7 +7,9 @@ package enemies {
 	import utilities.Actions;
 	
 	/**
-	 * ...
+	 * Enemy Superclass which implements despawn-time for all enemies with a required animation named death_animation 
+	 * which has a label called Actions.IDLE which will be played until the enemy is removed from stage.
+	 * Implements ILastFrameTrigger to remove the enemy in the last frame of the death_animation.
 	 * @author Gabriel
 	 */
 	public class Enemy extends MovieClip implements ILastFrameTrigger {

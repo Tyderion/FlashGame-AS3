@@ -8,10 +8,11 @@
 	import utilities.interfaces.IAttackTrigger;
 	import utilities.interfaces.ILastFrameTrigger;
 	
-	public class Baby extends Enemy implements IAttackTrigger {
-		
-		public static var blabla = "String";
-		
+	/**
+	 * Controls the baby animation. 
+	 * Implements IAttackTrigger to let the attackbox trigger the attack into the correct direction.
+	 */
+	public class Baby extends Enemy implements IAttackTrigger {		
 		private var HorizontalLimit = 100;
 		private var VerticalLimit = 50;
 		

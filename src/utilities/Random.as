@@ -2,7 +2,7 @@ package utilities {
 	import basics.hitboxes.InteractionBox;
 	
 	/**
-	 * ...
+	 * Helper functions to generate random numbers.
 	 * @author Gabriel
 	 */
 	public class Random {

@@ -3,7 +3,7 @@ package environment {
 	import utilities.*;
 	
 	/**
-	 * ...
+	 * Basic Environment class. Starts playing a random frame when it is constructed.
 	 * @author Gabriel
 	 */
 	public dynamic class Environment extends MovieClip {

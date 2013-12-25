@@ -4,6 +4,9 @@
 	import utilities.Random;
 	import flash.events.Event;
 	
+	/**
+	 * Horizontal Door has a lot more hitboxes than the basesegment and can be opened. 
+	 */
 	public class HorizontalDoor extends BaseSegment {
 		
 		private var rootRef:Root;

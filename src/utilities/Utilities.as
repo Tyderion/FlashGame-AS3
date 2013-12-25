@@ -5,7 +5,7 @@ package utilities {
 	import utilities.interfaces.ILastFrameTrigger;
 	
 	/**
-	 * ...
+	 * Some utility Functions bundled into a class.
 	 * @author Gabriel
 	 */
 	public class Utilities {

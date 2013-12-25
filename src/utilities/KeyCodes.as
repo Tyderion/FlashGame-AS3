@@ -1,5 +1,8 @@
 package utilities {
 	
+	/**
+	 * A list of all different keys.
+	 */
 	public final class KeyCodes {
 		
 		// I used http://www.dakmm.com/?p=272 as a reference to get the keyCode numbers for each key

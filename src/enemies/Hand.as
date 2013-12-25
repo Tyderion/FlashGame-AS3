@@ -12,8 +12,11 @@
 	import utilities.KeyCodes;
 	import utilities.interfaces.IAttackTrigger;
 	
-	
-	public class Hand extends Enemy implements IAttackTrigger, ILastFrameTrigger {
+	/**
+	 * Controls the hand.
+	 * Impelments IAttackTrigger to trigger the correct attacks (left/right/up/down).
+	 */
+	public class Hand extends Enemy implements IAttackTrigger {
 		
 		public var AttackTriggerLeft:AttackBox;
 		public var AttackTriggerRight:AttackBox;
@@ -27,7 +30,6 @@
 		public var hit_down_animation:LastFrameTrigger;
 			
 		private var rootRef:Root;
-		private var nextAction:String = Actions.IDLE;
 		
 		
 		public function Hand() {

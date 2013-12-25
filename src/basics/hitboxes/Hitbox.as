@@ -4,10 +4,12 @@
 	import vendor.KeyObject;
 	import utilities.KeyCodes;
 	
+	/**
+	 * Sets itself to the visibility which root dictates with rootref.shouldHitboxBeVisible.
+	 */	
 	public class Hitbox extends MovieClip {
 		
 		protected var rootRef:Root;
-		private var canSwapVisiblity:Boolean = true;
 		
 		public function Hitbox() {
 			super();

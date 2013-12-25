@@ -3,8 +3,10 @@
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import utilities.Random;
-	
-	public dynamic class BloodSplatter extends MovieClip {
+	/**
+	 * BloodSplatter scales randomely when its created and loops once and then removes itself from the stage.
+	 */
+	public class BloodSplatter extends MovieClip {
 		
 		public function BloodSplatter() {
 			setup();
