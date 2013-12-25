@@ -1,4 +1,5 @@
 package enemies {
+	import basics.hitboxes.BodyBox;
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import utilities.interfaces.ILastFrameTrigger;
@@ -17,6 +18,8 @@ package enemies {
 		public var death_animation:LastFrameTrigger;
 		public var despawnTime:Number = 20; // Seconds
 		private var deadTime:Date;
+		
+		public var body_hit:BodyBox;
 		
 		public function Enemy() {
 			super();
