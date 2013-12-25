@@ -15,7 +15,6 @@
 		public function AttackBox() {
 			super()
 			addEventListener(Event.ENTER_FRAME, checkForPlayer, false, 0, true);
-			//addEventListener(Event.REMOVED_FROM_STAGE, cleanup, false, 0, true);
 		}
 		
 		public function checkForPlayer(e:Event) {
@@ -25,10 +24,5 @@
 				}
 			}
 		}
-		
-		//public function cleanup(e:Event) {
-			//removeEventListener(Event.ENTER_FRAME, checkForPlayer, false);
-			//removeEventListener(Event.REMOVED_FROM_STAGE, cleanup, false);
-		//}
 	}
 }
