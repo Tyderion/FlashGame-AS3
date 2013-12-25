@@ -25,8 +25,6 @@
 		public var AttackTriggerLeft:AttackBox;
 		public var AttackTriggerRight:AttackBox;
 		
-		public var attackAnimation:LastFrameTrigger;
-		
 		private var FixPositionX;
 		private var FixPositionY;
 		
@@ -43,6 +41,7 @@
 			yspeed = 0;
 			this.direction = Directions.RIGHT;
 			addEventListener(Event.ENTER_FRAME, wait, false, 0, true);
+			this.despawnTime = 1;
 		}
 		
 		public function wait(e:Event) {
@@ -102,14 +101,9 @@
 			xspeed = 0;
 			yspeed = 0;
 			this.gotoAndStop(Actions.HIT + "_" + this.direction);
-			this.attackAnimation.delegate = this;
+			super.death_animation.delegate = this;
 			removeEventListener(Event.ENTER_FRAME, walk, false);
 			removeEventListener(Event.ENTER_FRAME, wait, false);
-		}
-		
-		override public function lastFrameEnded(animation:MovieClip) {
-			super.lastFrameEnded(animation);
-			this.parent.removeChild(this);
 		}
 	}
 

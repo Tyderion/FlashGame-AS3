@@ -47,6 +47,7 @@
 			Utilities.setAttackBoxDelegate(AttackTriggerRight, this);
 			Utilities.setAttackBoxDelegate(AttackTriggerUp, this);
 			Utilities.setAttackBoxDelegate(AttackTriggerDown, this);
+			Utilities.setLastFrameTriggerDelegate(death_animation, this);
 			Utilities.setLastFrameTriggerDelegate(hit_left_animation, this);
 			Utilities.setLastFrameTriggerDelegate(hit_right_animation, this);
 			Utilities.setLastFrameTriggerDelegate(hit_up_animation, this);
@@ -56,9 +57,7 @@
 		
 		override public function lastFrameEnded(mv:MovieClip) {
 			super.lastFrameEnded(mv);
-			if (mv == death_animation) {
-				death_animation.gotoAndPlay(Actions.IDLE);
-			} else {
+			if (mv != death_animation) {
 				this.gotoAndStop(Actions.IDLE);
 			}
 		}
