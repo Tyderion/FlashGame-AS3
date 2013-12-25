@@ -20,7 +20,7 @@
 		
 		public function checkForPlayer(e:Event) {
 			if (this.delegate != null) {
-				if (this.hitTestObject(super.rootRef.player)) {
+				if (this.hitTestObject(super.rootRef.player.feet_hit)) {
 					this.delegate.attackBoxTriggeredByPlayer(this);
 				}
 			}

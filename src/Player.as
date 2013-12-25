@@ -1,5 +1,6 @@
 ﻿package {
 	
+	import basics.hitboxes.BodyBox;
 	import enemies.Baby;
 	import flash.display.MovieClip;
 	import flash.events.Event;
@@ -11,7 +12,7 @@
 		private var speed:Number = 5;
 		private var rootRef:Root;
 		public var animations:MovieClip;
-		
+		public var feet_hit:BodyBox;
 		private var _direction;
 		
 		public function Player() {
