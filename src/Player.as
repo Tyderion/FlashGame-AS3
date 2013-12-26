@@ -1,6 +1,7 @@
 ﻿package {
 	
 	import basics.hitboxes.BodyBox;
+	import basics.Light;
 	import enemies.Baby;
 	import flash.display.MovieClip;
 	import flash.events.Event;
@@ -19,12 +20,16 @@
 		public var body_hit:BodyBox;
 		private var _direction;
 		
+		public var light:Light;
+		
 		public function Player() {
 			super();
 			this.rootRef = root as Root;
 			this.rootRef.player = this;
 			_direction = Directions.DOWN;
 			addEventListener(Event.ENTER_FRAME, loop, false, 0, true);
+			addEventListener(Event.ENTER_FRAME, moveLightToDarkness, false, 0, true);
+		
 		}
 		
 		public function get Direction():String {
@@ -56,11 +61,6 @@
 		}
 		
 		public function loop(e:Event):void {
-			//if (this.HealthPercentage > 0){
-				//this.applyDamage(0.1);
-			//} else {
-				//this.heal(100)
-			//}
 			var xchange = 0;
 			var ychange = 0;
 			if (this.rootRef.leftPressed) {
@@ -87,12 +87,19 @@
 			c = this.rootRef.scrollRect;
 			this.x = c.width / 2 + c.x;
 			this.y = c.height / 2 + c.y;
-			
 			this.animations.gotoAndPlay(this.Action + "_" + this.Direction);
 		
 		}
-	
+		
+		private function moveLightToDarkness(e:Event) {
+			if (this.rootRef.darkness) {
+				var t:Light = this.light;
+				this.light.parent.removeChild(light);
+				this.light.entity = this;
+				this.rootRef.darkness.addLight(this.light);
+				removeEventListener(Event.ENTER_FRAME, moveLightToDarkness, false);
+			}
+		}
 	}
-
 }
 
