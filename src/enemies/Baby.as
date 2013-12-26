@@ -8,7 +8,7 @@
 	import utilities.*;
 	import utilities.interfaces.IAttackTrigger;
 	import utilities.interfaces.ILastFrameTrigger;
-	import utilities.interfaces.Damage.IDamageTrigger;
+	import utilities.interfaces.IDamageTrigger;
 	
 	/**
 	 * Controls the baby animation.
