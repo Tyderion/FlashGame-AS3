@@ -25,6 +25,7 @@
 			this.rootRef.player = this;
 			_direction = Directions.DOWN;
 			addEventListener(Event.ENTER_FRAME, loop, false, 0, true);
+			addEventListener(Event.ENTER_FRAME, checkIfDead, false, 0, true);
 		}
 		
 		public function get Direction():String {
@@ -55,12 +56,16 @@
 			}
 		}
 		
+		public function checkIfDead(e:Event) {
+			if (this.HealthPercentage == 0) {
+				this.gotoAndStop(Actions.DEATH + "_" + this._direction);
+				super.death_animation.delegate = this;
+				removeEventListener(Event.ENTER_FRAME, loop, false);
+				removeEventListener(Event.ENTER_FRAME, checkIfDead, false);
+			}
+		}
+		
 		public function loop(e:Event):void {
-			//if (this.HealthPercentage > 0){
-				//this.applyDamage(0.1);
-			//} else {
-				//this.heal(100)
-			//}
 			var xchange = 0;
 			var ychange = 0;
 			if (this.rootRef.leftPressed) {
@@ -88,7 +93,7 @@
 			this.x = c.width / 2 + c.x;
 			this.y = c.height / 2 + c.y;
 			
-			this.animations.gotoAndPlay(this.Action + "_" + this.Direction);
+			this.gotoAndPlay(this.Action + "_" + this.Direction);
 		
 		}
 	
