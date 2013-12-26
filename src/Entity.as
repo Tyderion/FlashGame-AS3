@@ -1,4 +1,7 @@
 package {
+	import basics.hitboxes.AttackBox;
+	import basics.hitboxes.CollisionBox;
+	import basics.hitboxes.DamageBox;
 	import basics.Light;
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
@@ -14,6 +17,29 @@ package {
 		public function Entity() {
 			super();
 			addEventListener(Event.ENTER_FRAME, moveLightToDarkness, false, 0, true);
+		}
+		
+		public function get CollisionBoxes() {
+			return this.getBoxesOfType(CollisionBox);
+		}
+		
+		public function get DamageBoxes() {
+			return this.getBoxesOfType(DamageBox);
+		}
+		
+		public function get AttackBoxes() {
+			return this.getBoxesOfType(AttackBox);
+		}
+		
+		private function getBoxesOfType(type:Class):Array {
+			var results:Array = new Array();
+			for (var i:int = 0; i < this.numChildren; i++) {
+				var obj:DisplayObject = getChildAt(i);
+				if (obj is type) {
+					results.push(obj);
+				}
+			}
+			return results;
 		}
 		
 		private function moveLightToDarkness(e:Event) {
