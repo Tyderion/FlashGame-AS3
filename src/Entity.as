@@ -9,7 +9,7 @@ package {
 	 * @author Gabriel
 	 */
 	public class Entity extends MovieClip {
-		public var lights:Array = new Array();
+		private var lights:Array = new Array();
 		
 		public function Entity() {
 			super();
