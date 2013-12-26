@@ -22,10 +22,15 @@
 		
 		public var light:Light;
 		
+		public var offsetx:Number;
+		public var offsety:Number;
+		
 		public function Player() {
-			super();
+			super();			
 			this.rootRef = root as Root;
 			this.rootRef.player = this;
+			this.offsetx = this.x + 50;
+			this.offsety = this.y + 80;
 			_direction = Directions.DOWN;
 			addEventListener(Event.ENTER_FRAME, loop, false, 0, true);
 			addEventListener(Event.ENTER_FRAME, checkIfDead, false, 0, true);
@@ -62,6 +67,7 @@
 		}
 		
 		public function checkIfDead(e:Event) {
+			
 			if (this.HealthPercentage == 0) {
 				this.gotoAndStop(Actions.DEATH + "_" + this._direction);
 				super.death_animation.delegate = this;

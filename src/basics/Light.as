@@ -12,8 +12,6 @@ package basics
 	{
 		
 		private var _entity:Entity;
-		private var playerXOffset = 60;
-		private var playerYOffset = 800;
 		
 		public function Light(entity:Entity=null) 
 		{
@@ -32,8 +30,8 @@ package basics
 		
 		public function trackEntity(e:Event) {
 			if (_entity is Player) {
-				this.x = _entity.x - playerXOffset;
-				this.y = _entity.y - playerYOffset;
+				this.x =  _entity.x - (_entity as Player).offsetx + root.scrollRect.width / 2;
+				this.y = _entity.y - (_entity as Player).offsety + root.scrollRect.height/2 ;
 			} else {
 				this.x = _entity.x;
 				this.y = _entity.y;
