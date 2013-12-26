@@ -3,6 +3,7 @@
 	import basics.hitboxes.BodyBox;
 	import basics.hitboxes.AttackBox;
 	import basics.hitboxes.DamageBox;
+	import basics.Light;
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import utilities.*;
@@ -73,6 +74,7 @@
 				removeEventListener(Event.ENTER_FRAME, wait, false)
 				addEventListener(Event.ENTER_FRAME, walk, false, 0, true);
 			}
+			
 		}
 		
 		public function walk(e:Event):void {

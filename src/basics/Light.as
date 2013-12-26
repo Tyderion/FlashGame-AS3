@@ -29,14 +29,8 @@ package basics
 		
 		
 		public function trackEntity(e:Event) {
-			if (_entity is Player) {
 				this.x = _entity.x - this.parent.x;
 				this.y = _entity.y - this.parent.y
-			} else {
-				this.x = _entity.x;
-				this.y = _entity.y;
-			}
-			trace(this.x);
 		}
 		
 	}
