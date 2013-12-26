@@ -108,7 +108,7 @@
 			}
 			
 			if ((xspeed != 0 || yspeed != 0)) {
-				if (this.rootRef.collidesWithWall(this.x + xspeed, this.y + yspeed) || this.rootRef.collidesWithWall(this.x + xspeed + this.width * 2 / 3, this.y + yspeed)) {
+				if (this.rootRef.collidesWithEnvironment(this.x + xspeed, this.y + yspeed) || this.rootRef.collidesWithEnvironment(this.x + xspeed + this.width * 2 / 3, this.y + yspeed)) {
 					xspeed = -xspeed;
 					this.direction = Directions.oppositeOf(this.direction);
 				}

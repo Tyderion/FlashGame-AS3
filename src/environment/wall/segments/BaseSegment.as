@@ -8,16 +8,7 @@
 	 * @author Gabriel
 	 */
 	public class BaseSegment extends Environment {
-		
 		public var hitbox1:CollisionBox;
-		
-		public function get Hitboxes():Array {
-			if (hitbox1 == null)
-				return new Array();
-			else
-				return new Array(hitbox1);
-		}
-		
 		public function BaseSegment() {
 			super();
 		}
