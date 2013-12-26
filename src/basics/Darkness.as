@@ -13,6 +13,7 @@ package basics {
 		
 		public function addLight(light:Light) {
 			this.addChild(light);
+			return light;
 		}
 	
 	}

@@ -1,5 +1,6 @@
 package basics 
 {
+	import enemies.Baby;
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.display.BlendMode;
@@ -23,6 +24,7 @@ package basics
 			this.intrinsic_x_offset = x;
 			this.intrinsic_y_offset = y;
 			this.blendMode = BlendMode.ALPHA;
+			trace(this.name);
 		}
 		
 		public function set entity(entity:Entity) {
@@ -34,8 +36,10 @@ package basics
 		
 		
 		public function trackEntity(e:Event) {
+			if (parent != null) {
 				this.x = _entity.x - this.parent.x + this.intrinsic_x_offset;
 				this.y = _entity.y - this.parent.y + this.intrinsic_y_offset;
+			}
 		}
 		
 	}
