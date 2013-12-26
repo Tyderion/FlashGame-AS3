@@ -33,6 +33,8 @@
 		private var FixPositionX;
 		private var FixPositionY;
 		
+		private var playerHit:Boolean = false;
+		
 		private var Wait;
 		
 		public function Baby() {
@@ -50,7 +52,10 @@
 		}
 		
 		public function damageAppliedToPlayer(box:DamageBox, player:Player) {
-			player.applyDamage(this.damageAmount);
+			if (!this.playerHit) {
+				player.applyDamage(this.damageAmount);
+				playerHit = true;
+			}
 		}
 		
 		public function damageAppliedToEnemy(box:DamageBox, enemy:Enemy) {
@@ -135,6 +140,5 @@
 			removeEventListener(Event.ENTER_FRAME, wait, false);
 		}
 	}
-
 }
 
