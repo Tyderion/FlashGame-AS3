@@ -9,7 +9,7 @@
 	public class DamageBox extends Hitbox {
 		
 		
-		private var delegate:IDamageTrigger;
+		public var delegate:IDamageTrigger;
 		
 		public function DamageBox() {
 			super();
@@ -27,19 +27,18 @@
 		}
 		
 		public function checkForEnemies(e:Event) {
-			if (this.delegate != null) {
-				for (var i:int = 0; i < super.rootRef.numChildren; i++)  {
-					var child:DisplayObject = super.rootRef.getChildAt(i);
-					if (child is Enemy) {
-						var enemy:Enemy = child as Enemy;
-						if (this.hitTestObject(enemy.body_hit)) {
-							this.delegate.damageAppliedToEnemy(this, enemy);
-						}
-					}
-				}
-			}
+			//if (this.delegate != null) {
+				//for (var i:int = 0; i < super.rootRef.numChildren; i++)  {
+					//var child:DisplayObject = super.rootRef.getChildAt(i);
+					//if (child is Enemy) {
+						//var enemy:Enemy = child as Enemy;
+						//if (this.hitTestObject(enemy.body_hit)) {
+							//this.delegate.damageAppliedToEnemy(this, enemy);
+						//}
+					//}
+				//}
+			//}
 		}
-	
 	}
 
 }
