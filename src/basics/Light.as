@@ -30,12 +30,13 @@ package basics
 		
 		public function trackEntity(e:Event) {
 			if (_entity is Player) {
-				this.x =  _entity.x - (_entity as Player).offsetx + root.scrollRect.width / 2;
-				this.y = _entity.y - (_entity as Player).offsety + root.scrollRect.height/2 ;
+				this.x = _entity.x - this.parent.x;
+				this.y = _entity.y - this.parent.y
 			} else {
 				this.x = _entity.x;
 				this.y = _entity.y;
 			}
+			trace(this.x);
 		}
 		
 	}
