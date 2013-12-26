@@ -66,7 +66,6 @@
 		}
 		}
 		public function walk(e:Event):void {
-			//this.setAttackTriggerDelegate()
 			
 			if (this.x < (FixPositionX - HorizontalLimit)) {
 				xspeed = this.speed;
@@ -101,14 +100,5 @@
 			this.gotoAndStop(this.nextAction + this.direction);
 		
 		}
-		
-
-		
-		/*private function setAttackTriggerDelegate() {
-			if (this.AttackTriggerRight && this.AttackTriggerRight.delegate != this)
-				this.AttackTriggerRight.delegate = this;
-			if (this.AttackTriggerLeft && this.AttackTriggerLeft.delegate != this)
-				this.AttackTriggerLeft.delegate = this;
-		}*/
 	}
 }

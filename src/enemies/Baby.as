@@ -2,17 +2,19 @@
 	
 	import basics.hitboxes.BodyBox;
 	import basics.hitboxes.AttackBox;
+	import basics.hitboxes.DamageBox;
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import utilities.*;
 	import utilities.interfaces.IAttackTrigger;
 	import utilities.interfaces.ILastFrameTrigger;
+	import utilities.interfaces.Damage.IDamageTrigger;
 	
 	/**
 	 * Controls the baby animation. 
 	 * Implements IAttackTrigger to let the attackbox trigger the attack into the correct direction.
 	 */
-	public class Baby extends Enemy implements IAttackTrigger {		
+	public class Baby extends Enemy implements IAttackTrigger, IDamageTrigger {		
 		private var HorizontalLimit = 100;
 		private var VerticalLimit = 50;
 		
@@ -25,6 +27,7 @@
 		
 		public var AttackTriggerLeft:AttackBox;
 		public var AttackTriggerRight:AttackBox;
+		public var Damage:DamageBox;
 		
 		private var FixPositionX;
 		private var FixPositionY;
@@ -43,6 +46,15 @@
 			this.direction = Directions.RIGHT;
 			addEventListener(Event.ENTER_FRAME, wait, false, 0, true);
 			this.despawnTime = 1;
+		}
+		
+		public function damageAppliedToPlayer() {
+			if (Damage.hitTestObject(super.rootRef.player.body_hit)) {
+		}
+		
+		public function damageAppliedToEnemy() {
+			
+		
 		}
 		
 		public function wait(e:Event) {
@@ -99,6 +111,7 @@
 		}
 		
 		public function attackBoxTriggeredByPlayer(box:AttackBox) {
+			box.delegate = this;
 			xspeed = 0;
 			yspeed = 0;
 			this.gotoAndStop(Actions.DEATH + "_" + this.direction);
