@@ -1,6 +1,7 @@
 ﻿package {
 	
 	import basics.BloodSplatter;
+	import basics.Darkness;
 	import basics.hitboxes.CollisionBox;
 	import enemies.Baby;
 	import enemies.Enemy;
@@ -36,6 +37,8 @@
 		public var scrollRectHeight:Number = 400;
 		
 		public var player:Player;
+		
+		public var darkness:Darkness;
 		
 		private var timesToSort:Number = 3;
 		

@@ -12,7 +12,7 @@ package {
 	 * - HealthPercentage, heal, applyDamage are public.
 	 * @author Gabriel
 	 */
-	public class HealthEntity extends MovieClip implements ILastFrameTrigger {
+	public class HealthEntity extends Entity implements ILastFrameTrigger {
 		protected var maxHealth:Number = 100;
 		private var _currentHealth:Number;
 		public var death_animation:LastFrameTrigger;
@@ -75,6 +75,7 @@ package {
 			}
 			_currentHealth = value;
 		}
+
 	
 	}
 
