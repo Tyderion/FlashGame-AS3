@@ -1,6 +1,5 @@
 package {
 	import basics.Light;
-	import enemies.Baby;
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
 	import flash.events.Event;
