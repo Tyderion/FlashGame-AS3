@@ -20,8 +20,6 @@
 		public var body_hit:BodyBox;
 		private var _direction;
 		
-		public var light:Light;
-		
 		public var offsetx:Number;
 		public var offsety:Number;
 		
@@ -33,9 +31,7 @@
 			this.offsety = this.y + 80;
 			_direction = Directions.DOWN;
 			addEventListener(Event.ENTER_FRAME, loop, false, 0, true);
-			addEventListener(Event.ENTER_FRAME, checkIfDead, false, 0, true);
-			addEventListener(Event.ENTER_FRAME, moveLightToDarkness, false, 0, true);
-		
+			addEventListener(Event.ENTER_FRAME, checkIfDead, false, 0, true);		
 		}
 		
 		public function get Direction():String {
@@ -106,16 +102,6 @@
 			
 			this.gotoAndPlay(this.Action + "_" + this.Direction);
 		
-		}
-		
-		private function moveLightToDarkness(e:Event) {
-			if (this.rootRef.darkness) {
-				var t:Light = this.light;
-				this.light.parent.removeChild(light);
-				this.light.entity = this;
-				this.rootRef.darkness.addLight(this.light);
-				removeEventListener(Event.ENTER_FRAME, moveLightToDarkness, false);
-			}
 		}
 	}
 
