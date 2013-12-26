@@ -28,7 +28,6 @@
 		
 		public var AttackTriggerLeft:AttackBox;
 		public var AttackTriggerRight:AttackBox;
-		public var Damage:DamageBox;
 		
 		private var FixPositionX;
 		private var FixPositionY;
@@ -122,8 +121,8 @@
 		public function setDamageDelegate(e:Event) {
 			if (death_animation != null) {
 				var attackTrigger:AttackAnimationTrigger = death_animation as AttackAnimationTrigger;
-				if (attackTrigger.Damage != null) {
-					attackTrigger.Damage.delegate = this;
+				if (attackTrigger.damage_box != null) {
+					attackTrigger.damage_box.delegate = this;
 					removeEventListener(Event.ENTER_FRAME, setDamageDelegate, false);
 				}
 			}
