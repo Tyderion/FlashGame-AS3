@@ -24,7 +24,7 @@
 		private var yspeed:Number;
 		private var direction:String;
 		private var nextAction:String = "idle";
-		private var damageAmount:Number = 10;
+		private var damageAmount:Number;
 		
 		public var AttackTriggerLeft:AttackBox;
 		public var AttackTriggerRight:AttackBox;
@@ -44,6 +44,7 @@
 			FixPositionX = int(this.x);
 			FixPositionY = int(this.y);
 			this.speed = Random.random(6) + 2;
+			this.damageAmount = 1/this.speed * 100;
 			xspeed = this.speed;
 			yspeed = 0;
 			this.direction = Directions.RIGHT;
