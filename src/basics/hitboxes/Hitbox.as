@@ -23,7 +23,9 @@
 		}
 		
 		private function setVisibility() {
-			this.alpha = rootRef.shouldHitboxBeVisible ? 1 : 0;
+			if (this.rootRef != null) {
+				this.alpha = rootRef.shouldHitboxBeVisible ? 1 : 0;
+			}
 		}
 	
 	}

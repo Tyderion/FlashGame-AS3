@@ -8,13 +8,13 @@
 	import utilities.*;
 	import utilities.interfaces.IAttackTrigger;
 	import utilities.interfaces.ILastFrameTrigger;
-	import utilities.interfaces.Damage.IDamageTrigger;
+	import utilities.interfaces.IDamageTrigger;
 	
 	/**
-	 * Controls the baby animation. 
+	 * Controls the baby animation.
 	 * Implements IAttackTrigger to let the attackbox trigger the attack into the correct direction.
 	 */
-	public class Baby extends Enemy implements IAttackTrigger, IDamageTrigger {		
+	public class Baby extends Enemy implements IAttackTrigger, IDamageTrigger {
 		private var HorizontalLimit = 100;
 		private var VerticalLimit = 50;
 		
@@ -24,6 +24,7 @@
 		private var yspeed:Number;
 		private var direction:String;
 		private var nextAction:String = "idle";
+		private var damageAmount:Number = 10;
 		
 		public var AttackTriggerLeft:AttackBox;
 		public var AttackTriggerRight:AttackBox;
@@ -31,6 +32,8 @@
 		
 		private var FixPositionX;
 		private var FixPositionY;
+		
+		private var playerHit:Boolean = false;
 		
 		private var Wait;
 		
@@ -48,13 +51,19 @@
 			this.despawnTime = 1;
 		}
 		
-		public function damageAppliedToPlayer() {
-			if (Damage.hitTestObject(super.rootRef.player.body_hit)) {
+		public function damageAppliedToPlayer(box:DamageBox, player:Player) {
+			if (!this.playerHit) {
+				player.applyDamage(this.damageAmount);
+				playerHit = true;
+			}
 		}
 		
-		public function damageAppliedToEnemy() {
-			
-		
+		public function damageAppliedToEnemy(box:DamageBox, enemy:Enemy) {
+			if (enemy is Baby) {
+				enemy.applyDamage(1);
+			} else if (enemy is Skull) {
+				enemy.heal(10);
+			}
 		}
 		
 		public function wait(e:Event) {
@@ -94,13 +103,12 @@
 					xspeed = -xspeed;
 					this.direction = Directions.oppositeOf(this.direction);
 				}
-				this.nextAction = "baby_"+Actions.WALK+"_";
+				this.nextAction = "baby_" + Actions.WALK + "_";
 				this.x += xspeed;
 				this.y += yspeed;
 			}
 			
 			this.gotoAndStop(this.nextAction + this.direction);
-		
 		}
 		
 		private function setAttackTriggerDelegate() {
@@ -110,16 +118,27 @@
 				this.AttackTriggerLeft.delegate = this;
 		}
 		
+		public function setDamageDelegate(e:Event) {
+			if (death_animation != null) {
+				var attackTrigger:AttackAnimationTrigger = death_animation as AttackAnimationTrigger;
+				if (attackTrigger.Damage != null) {
+					attackTrigger.Damage.delegate = this;
+					removeEventListener(Event.ENTER_FRAME, setDamageDelegate, false);
+				}
+			}
+		}
+		
 		public function attackBoxTriggeredByPlayer(box:AttackBox) {
 			box.delegate = this;
 			xspeed = 0;
 			yspeed = 0;
 			this.gotoAndStop(Actions.DEATH + "_" + this.direction);
-			super.death_animation.delegate = this;
+			this.death_animation.delegate = this;
+			
+			addEventListener(Event.ENTER_FRAME, setDamageDelegate, false, 0, true);
 			removeEventListener(Event.ENTER_FRAME, walk, false);
 			removeEventListener(Event.ENTER_FRAME, wait, false);
 		}
 	}
-
 }
 

@@ -56,11 +56,11 @@
 		}
 		
 		public function loop(e:Event):void {
-			if (this.HealthPercentage > 0){
-				this.applyDamage(0.1);
-			} else {
-				this.heal(100)
-			}
+			//if (this.HealthPercentage > 0){
+				//this.applyDamage(0.1);
+			//} else {
+				//this.heal(100)
+			//}
 			var xchange = 0;
 			var ychange = 0;
 			if (this.rootRef.leftPressed) {

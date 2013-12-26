@@ -4,12 +4,12 @@
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
 	import flash.events.Event;
-	import utilities.interfaces.Damage.IDamageTrigger;
+	import utilities.interfaces.IDamageTrigger;
 	
 	public class DamageBox extends Hitbox {
 		
 		
-		private var delegate:IDamageTrigger;
+		public var delegate:IDamageTrigger;
 		
 		public function DamageBox() {
 			super();
@@ -30,7 +30,7 @@
 			if (this.delegate != null) {
 				for (var i:int = 0; i < super.rootRef.numChildren; i++)  {
 					var child:DisplayObject = super.rootRef.getChildAt(i);
-					if (child is Enemy) {
+					if (child is Enemy && false) {
 						var enemy:Enemy = child as Enemy;
 						if (this.hitTestObject(enemy.body_hit)) {
 							this.delegate.damageAppliedToEnemy(this, enemy);

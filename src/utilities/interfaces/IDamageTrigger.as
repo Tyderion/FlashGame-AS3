@@ -1,4 +1,4 @@
-package utilities.interfaces.Damage {
+package utilities.interfaces {
 	import basics.hitboxes.DamageBox;
 	import enemies.Enemy;
 	
