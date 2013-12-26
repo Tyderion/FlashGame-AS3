@@ -78,6 +78,13 @@
 		public function walk(e:Event):void {
 			this.setAttackTriggerDelegate()
 			
+			if (this.HealthPercentage == 0) {
+				this.attackBoxTriggeredByPlayer(null);
+				
+				removeEventListener(Event.ENTER_FRAME, walk, false);
+				return;
+			}
+			
 			if (this.x < (FixPositionX - HorizontalLimit)) {
 				xspeed = this.speed;
 				this.direction = Directions.RIGHT;
@@ -129,7 +136,6 @@
 		}
 		
 		public function attackBoxTriggeredByPlayer(box:AttackBox) {
-			box.delegate = this;
 			xspeed = 0;
 			yspeed = 0;
 			this.gotoAndStop(Actions.DEATH + "_" + this.direction);

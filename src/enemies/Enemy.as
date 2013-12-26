@@ -6,6 +6,7 @@ package enemies {
 	import utilities.LastFrameTrigger;
 	import utilities.Utilities;
 	import utilities.Actions;
+	import utilities.KeyCodes;
 	
 	/**
 	 * Enemy Superclass which implements despawn-time for all enemies with a required animation named death_animation 
@@ -23,6 +24,14 @@ package enemies {
 		
 		public function Enemy() {
 			super();
+			addEventListener(Event.ENTER_FRAME, death, false, 0, true);
+		}
+		public function death(e:Event):void {
+			if (root != null) {
+				if ((this.root as Root).keyPresses.isDown(KeyCodes.J)) {
+					this.applyDamage(100000);
+				}
+			}
 		}
 		
 		public function deathTrigger(e:Event) {

@@ -21,7 +21,6 @@
 		private var xspeed:Number;
 		private var yspeed:Number;
 		private var direction:String;
-		private var nextAction:String = "idle";
 		
 		public var AttackTriggerLeft:AttackBox;
 		public var AttackTriggerRight:AttackBox;
@@ -42,7 +41,7 @@
 			yspeed = 0;
 			this.direction = Directions.RIGHT;
 			addEventListener(Event.ENTER_FRAME, wait, false, 0, true);
-			addEventListener(Event.ENTER_FRAME, death, false, 0, true);
+			addEventListener(Event.ENTER_FRAME, checkIfDead, false, 0, true);
 		}
 		
 		public function wait(e:Event) {
@@ -54,19 +53,18 @@
 			}
 		}
 		
+		public function checkIfDead(e:Event) {
+			if (this.HealthPercentage == 0) {
+				xspeed = 0;
+				yspeed = 0;
+				this.gotoAndStop(Actions.DEATH + "_" + this.direction);
+				super.death_animation.delegate = this;
+				removeEventListener(Event.ENTER_FRAME, walk, false);
+				removeEventListener(Event.ENTER_FRAME, wait, false);
+			}
+		}
 		
-		public function death(e:Event):void {
-			if (this.rootRef.keyPresses.isDown(KeyCodes.J)) {
-			xspeed = 0;
-			yspeed = 0;
-			this.gotoAndStop(Actions.DEATH + "_" + this.direction);
-			super.death_animation.delegate = this;
-			removeEventListener(Event.ENTER_FRAME, walk, false);
-			removeEventListener(Event.ENTER_FRAME, wait, false);
-		}
-		}
 		public function walk(e:Event):void {
-			
 			if (this.x < (FixPositionX - HorizontalLimit)) {
 				xspeed = this.speed;
 				this.direction = Directions.RIGHT;
@@ -92,12 +90,11 @@
 					xspeed = -xspeed;
 					this.direction = Directions.oppositeOf(this.direction);
 				}
-				this.nextAction = "skull_walk_";
 				this.x += xspeed;
 				this.y += yspeed;
 			}
 			
-			this.gotoAndStop(this.nextAction + this.direction);
+			this.gotoAndStop("skull_walk_"+  this.direction);
 		
 		}
 	}

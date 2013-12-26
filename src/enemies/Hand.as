@@ -7,6 +7,7 @@
 	import utilities.Directions;
 	import utilities.Actions;
 	import utilities.interfaces.ILastFrameTrigger;
+	import utilities.interfaces.IDamageTrigger;
 	import utilities.LastFrameTrigger;
 	import utilities.Utilities;
 	import utilities.KeyCodes;

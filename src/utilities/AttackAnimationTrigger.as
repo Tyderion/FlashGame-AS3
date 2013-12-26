@@ -9,7 +9,7 @@ package utilities
 	public class AttackAnimationTrigger extends LastFrameTrigger 
 	{
 		
-		public var Damage:DamageBox;
+		public var damage_box:DamageBox;
 		
 		public function AttackAnimationTrigger() 
 		{
