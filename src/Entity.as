@@ -31,7 +31,8 @@ package {
 					var light:Light = removed[j] as Light;
 					light.entity = this;
 					this.removeChild(light);
-					this.lights.push(rootRef.darkness.addLight(light));
+					rootRef.darkness.addLight(light)
+					this.lights.push(light);
 				}
 				removeEventListener(Event.ENTER_FRAME, moveLightToDarkness, false);
 				addEventListener(Event.REMOVED_FROM_STAGE, removeLight, false, 0, true);

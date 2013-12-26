@@ -24,7 +24,6 @@ package basics
 			this.intrinsic_x_offset = x;
 			this.intrinsic_y_offset = y;
 			this.blendMode = BlendMode.ALPHA;
-			trace(this.name);
 		}
 		
 		public function set entity(entity:Entity) {

@@ -35,9 +35,6 @@
 		
 		private var playerHit:Boolean = false;
 		
-		public var light1;
-		public var light2;
-		
 		private var Wait;
 		
 		public function Baby() {
