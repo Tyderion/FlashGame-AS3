@@ -8,7 +8,7 @@ package {
 	 * - HealthPercentage, heal, applyDamage are public.
 	 * @author Gabriel
 	 */
-	public class HealthEntity extends MovieClip {
+	public class HealthEntity extends Entity {
 		protected var maxHealth:Number = 100;
 		private var _currentHealth:Number;
 		
