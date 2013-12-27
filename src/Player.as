@@ -88,12 +88,12 @@
 			}
 			
 			var c:Rectangle = this.rootRef.scrollRect;
-			if (!this.rootRef.collidesWithWall(this.x + xchange, this.y + ychange)) {
+			if (!this.rootRef.collidesWithEnvironment(this.x + xchange, this.y + ychange)) {
 				this.rootRef.scrollRect = new Rectangle(c.x += xchange, c.y += ychange, c.width, c.height);
-			} else if (!this.rootRef.collidesWithWall(this.x, this.y + ychange)) {
+			} else if (!this.rootRef.collidesWithEnvironment(this.x, this.y + ychange)) {
 				this.rootRef.scrollRect = new Rectangle(c.x, c.y += ychange, c.width, c.height);
 				
-			} else if (!this.rootRef.collidesWithWall(this.x + xchange, this.y)) {
+			} else if (!this.rootRef.collidesWithEnvironment(this.x + xchange, this.y)) {
 				this.rootRef.scrollRect = new Rectangle(c.x += xchange, c.y, c.width, c.height);
 			}
 			c = this.rootRef.scrollRect;
