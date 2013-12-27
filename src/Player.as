@@ -34,6 +34,10 @@
 			addEventListener(Event.ENTER_FRAME, checkIfDead, false, 0, true);		
 		}
 		
+		public function get light():Light {
+			return this.Lights[0];
+		}
+		
 		public function get Direction():String {
 			
 			if (this.rootRef.upPressed) {
@@ -101,7 +105,8 @@
 			this.y = c.height / 2 + c.y;
 			
 			this.gotoAndPlay(this.Action + "_" + this.Direction);
-		
+			this.light.scaleX = this.HealthPercentage;
+			this.light.scaleY = this.HealthPercentage;
 		}
 	}
 

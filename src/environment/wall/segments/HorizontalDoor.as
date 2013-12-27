@@ -7,7 +7,7 @@
 	/**
 	 * Horizontal Door has a lot more hitboxes than the basesegment and can be opened. 
 	 */
-	public class HorizontalDoor extends BaseSegment {
+	public dynamic class HorizontalDoor extends BaseSegment {
 		
 		private var rootRef:Root;
 		public var DoorTrigger:InteractionBox;
