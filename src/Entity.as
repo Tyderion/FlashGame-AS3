@@ -2,6 +2,7 @@ package {
 	import basics.hitboxes.AttackBox;
 	import basics.hitboxes.CollisionBox;
 	import basics.hitboxes.DamageBox;
+	import basics.hitboxes.Hitbox;
 	import basics.Light;
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
@@ -12,31 +13,31 @@ package {
 	 * @author Gabriel
 	 */
 	public class Entity extends MovieClip {
-		private var lights:Array = new Array();
+		private var lights:Vector.<Light> = new Vector.<Light>();
 		
 		public function Entity() {
 			super();
 			addEventListener(Event.ENTER_FRAME, moveLightToDarkness, false, 0, true);
 		}
 		
-		protected function get Lights() {
+		protected function get Lights():Vector.<Light> {
 			return lights;
 		}
 		
-		public function get CollisionBoxes() {
-			return this.getBoxesOfType(CollisionBox);
+		public function get CollisionBoxes():Vector.<CollisionBox> {
+			return Vector.<CollisionBox>(this.getBoxesOfType(CollisionBox));
 		}
 		
-		public function get DamageBoxes() {
-			return this.getBoxesOfType(DamageBox);
+		public function get DamageBoxes():Vector.<DamageBox> {
+			return Vector.<DamageBox>(this.getBoxesOfType(DamageBox));
 		}
 		
-		public function get AttackBoxes() {
-			return this.getBoxesOfType(AttackBox);
+		public function get AttackBoxes():Vector.<AttackBox> {
+			return Vector.<AttackBox>(this.getBoxesOfType(AttackBox));
 		}
 		
-		private function getBoxesOfType(type:Class):Array {
-			var results:Array = new Array();
+		private function getBoxesOfType(type:Class):Vector.<Hitbox> {
+			var results:Vector.<Hitbox> = new Vector.<Hitbox>();
 			for (var i:int = 0; i < this.numChildren; i++) {
 				var obj:DisplayObject = getChildAt(i);
 				if (obj is type) {
@@ -49,15 +50,15 @@ package {
 		private function moveLightToDarkness(e:Event) {
 			var rootRef:Root = root as Root;
 			if (rootRef.darkness != null) {
-				var removed:Array = new Array();
+				var removed:Vector.<Light> = new Vector.<Light>();
 				for (var i:int = 0; i < this.numChildren; i++) {
 					var child:DisplayObject = this.getChildAt(i);
 					if (child is Light) {
-						removed.push(child);
+						removed.push(child as Light);
 					}
 				}
-				for (var j:int = 0; j < removed.length; j++) {
-					var light:Light = removed[j] as Light;
+				for (var lightNumber:int = 0; lightNumber < removed.length; lightNumber++) {
+					var light:Light = removed[lightNumber];
 					light.entity = this;
 					this.removeChild(light);
 					rootRef.darkness.addLight(light)
@@ -71,8 +72,7 @@ package {
 		private function removeLight(e:Event) {
 			var rootRef:Root = root as Root;
 			for (var i:int = 0; i < this.lights.length; i++) {
-				var light:Light = this.lights[i];
-				rootRef.darkness.removeChild(light);
+				rootRef.darkness.removeChild(this.lights[i]);
 			}
 		}
 	}
