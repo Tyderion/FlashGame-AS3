@@ -19,6 +19,10 @@ package {
 			addEventListener(Event.ENTER_FRAME, moveLightToDarkness, false, 0, true);
 		}
 		
+		protected function get Lights() {
+			return lights;
+		}
+		
 		public function get CollisionBoxes() {
 			return this.getBoxesOfType(CollisionBox);
 		}
