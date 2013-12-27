@@ -180,19 +180,12 @@
 			stage.addChild(blood);
 		}
 		
-		public function collidesWithWall(x_next:Number, y_next:Number) {
+		public function collidesWithEnvironment(x_next:Number, y_next:Number) {
 			for (var i = 0; i < this.numChildren; i++) {
 				var childClip:MovieClip = getChildAt(i) as MovieClip;
-				if (childClip is Tree) {
-					var tree:Tree = childClip as Tree;
-					if (tree.hitbox.hitTestPoint(x_next, y_next, false)) {
-						return true;
-					}
-				} else if (childClip is BaseSegment) {
-					
-					var wall:BaseSegment = childClip as BaseSegment;
-					
-					for each (var hitbox:CollisionBox in wall.Hitboxes) {
+				if (childClip is Environment) {
+					var env:Environment = childClip as Environment;
+					for each (var hitbox:CollisionBox in env.CollisionBoxes) {
 						if (hitbox.hitTestPoint(x_next, y_next, false)) {
 							return true;
 						}

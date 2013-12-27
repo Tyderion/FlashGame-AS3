@@ -17,17 +17,6 @@
 		
 		private var doorOpening:Boolean = false;
 		
-		override public function get Hitboxes():Array {
-			var hitboxes:Array = super.Hitboxes;
-			if (hitbox2 != null)
-				hitboxes.push(hitbox2);
-			if (hitbox3 != null)
-				hitboxes.push(hitbox3);
-			if (hitbox4 != null)
-				hitboxes.push(hitbox4);
-			return hitboxes;
-		}
-		
 		public function get isDoorOpen():Boolean {
 			return this.currentFrame >= 8;
 		}
